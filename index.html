@@ -211,10 +211,10 @@ const jobs=[
 document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
 document.getElementById('duties').innerHTML=duties.map(([a,b])=>`<div class="duty"><b>${a}</b><span>${b}</span></div>`).join('');
 const wins=[
- ["AppScheduler:","servicio de Windows en PowerShell y NSSM que abre y cierra la música (Listen X) según el horario de cada sucursal, en lugar de una tarea programada."],
- ["Manual de verificación y corrección de fallas","para resolver incidencias comunes en las unidades."],
- ["Checklist de validación de sistemas","por unidad para revisar servidores, torniquetes, audio y aires."],
- ["Informe de cobertura Wi-Fi","de las tres sucursales, con propuesta de repetidores y presupuesto."],
+ ["Diagnóstico de cobertura Wi-Fi","en las tres sucursales, con propuesta de equipos y presupuesto, e instalación de repetidores en Galerías."],
+ ["Administración y soporte de AppScheduler,","el servicio de Windows en PowerShell y NSSM que controla la música ambiental: ajuste de horarios y corrección de fallas."],
+ ["Manual de diagnóstico y corrección de fallas","y checklist de validación de sistemas por sucursal."],
+ ["Propuesta de plan de contingencia","para mantener el control de acceso y la operación de las sucursales ante una caída del sistema (pendiente de aprobación)."],
 ];
 document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</strong> ${b}</li>`).join('');
 
