@@ -98,6 +98,10 @@ h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px}
 .thumbs img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top}
 .phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:var(--mint);border-radius:16px;padding:18px}
 .phones img{width:100%;border-radius:14px;box-shadow:0 14px 30px -14px #0007;display:block}
+.sub{font-size:24px;margin:44px 0 16px}
+.otros{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:14px}
+.otro{border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+.otro h3{font-size:20px;margin:6px 0 8px}.otro p{margin:0;color:var(--soft);font-size:15px}
 .tags span{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px}
@@ -162,6 +166,8 @@ footer{color:var(--soft);font-size:13px;padding-top:28px}
     <p class="label">Proyectos</p>
     <h2>Lo que he desarrollado</h2>
     <div class="proj" id="proj"></div>
+    <h3 class="sub">Otros trabajos</h3>
+    <div class="otros" id="otros"></div>
   </section>
 
   <section id="habilidades">
@@ -198,7 +204,7 @@ const courses=[
 ];
 document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
 const jobs=[
- ["Desarrollador de software freelance","Proyectos para JTX Electrical","Por proyecto","Junto a Ángel Carias desarrollamos el panel administrativo con Angular 20, Tailwind CSS y Firebase/Firestore (calendario, módulos CRUD, mapa de proyectos) y el sitio web público con Angular 21. Ambos en producción. También trabajamos en Pumarket, una app móvil para emprendedores de la UNAH."],
+ ["Desarrollador de software freelance","Proyectos para clientes","Por proyecto","Panel administrativo y sitio web para JTX Electrical con Angular, Tailwind CSS y Firebase/Firestore, ambos en producción; sistema de gestión para la empresa de paquetería Premium Logistics Cargo; y Pumarket, app móvil para emprendedores de la UNAH."],
  ["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, información sobre tarifas y plazos de entrega, y procesamiento de reembolsos con atención personalizada."],
  ["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."],
 ];
@@ -214,18 +220,22 @@ document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</s
 
 /* Para poner una captura: guarda la imagen junto a este archivo y escribe su nombre en img, por ejemplo img:"jtx-admin.png" */
 const proj=[
- {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",team:true,imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle. Incluye módulos CRUD con borrado lógico, notificaciones y confeti al completar registros.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
- {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",team:true,imgs:["jtxweb-0.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
- {t:"Pumarket, app para emprendedores de la UNAH",b:"App móvil",team:true,phone:true,imgs:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"],d:"Marketplace móvil donde estudiantes de la UNAH publican y venden sus productos y servicios, con buscador, categorías, registro e inicio de sesión, y una bienvenida con contacto por Facebook y WhatsApp.",tags:["App móvil","Marketplace"]},
- {t:"TicketFlow",b:"En construcción",imgs:[],d:"Sistema de tickets de soporte de TI con prioridades, asignación a técnicos y seguimiento de estado.",tags:["C# / .NET","SQL Server","Angular"]},
- {t:"Monitor de paciente UCI con IoT",b:"Proyecto académico",imgs:[],d:"Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab.",tags:["Wokwi","ThingSpeak","Python"]},
+ {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle. Incluye módulos CRUD con borrado lógico, notificaciones y confeti al completar registros.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
+ {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",imgs:["jtxweb-0.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
+ {t:"Pumarket, app para emprendedores de la UNAH",b:"App móvil",phone:true,imgs:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"],d:"Marketplace móvil donde estudiantes de la UNAH publican y venden sus productos y servicios, con buscador, categorías, registro e inicio de sesión, y una bienvenida con contacto por Facebook y WhatsApp.",tags:["App móvil","Marketplace"]},
 ];
+const otros=[
+ ["Premium Logistics Cargo","Cliente real","Sistema integral de gestión para una empresa de paquetería."],
+ ["TicketFlow","En construcción","Sistema de tickets de soporte de TI con prioridades, asignación a técnicos y seguimiento de estado. C# / .NET, SQL Server y Angular."],
+ ["Monitor de paciente UCI con IoT","Proyecto académico","Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab."],
+];
+document.getElementById('otros').innerHTML=otros.map(([a,b,c])=>`<div class="otro"><span class="badge">${b}</span><h3>${a}</h3><p>${c}</p></div>`).join('');
 const media=(p,i)=>{
  if(!p.imgs.length)return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><div class="empty"><div><b>Captura pendiente</b>Aquí va una imagen del proyecto</div></div></div>`;
  if(p.phone)return `<div class="phones">${p.imgs.map(s=>`<img src="${s}" alt="Pantalla de ${p.t}" loading="lazy">`).join('')}</div>`;
  return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><img id="m${i}" src="${p.imgs[0]}" alt="Captura de ${p.t}" loading="lazy"></div>${p.imgs.length>1?`<div class="thumbs">${p.imgs.map((s,k)=>`<button data-m="m${i}" data-s="${s}" class="${k?'':'on'}" aria-label="Ver captura ${k+1}"><img src="${s}" alt=""></button>`).join('')}</div>`:''}`;
 };
-document.getElementById('proj').innerHTML=proj.map((p,i)=>`<article class="p"><div class="media">${media(p,i)}</div><div><span class="badge">${p.b}</span>${p.team?'<span class="badge team">En equipo con Ángel Carias</span>':''}<h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.url?`<a class="visit" href="${p.url}">Ver sitio en vivo →</a>`:''}</div></article>`).join('');
+document.getElementById('proj').innerHTML=proj.map((p,i)=>`<article class="p"><div class="media">${media(p,i)}</div><div><span class="badge">${p.b}</span><h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.url?`<a class="visit" href="${p.url}">Ver sitio en vivo →</a>`:''}</div></article>`).join('');
 document.getElementById('proj').addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b)return;document.getElementById(b.dataset.m).src=b.dataset.s;[...b.parentNode.children].forEach(x=>x.classList.toggle('on',x===b))});
 
 const sk=[["Lenguajes",["C++","Java","C#","Python","JavaScript","TypeScript"]],["Frontend",["Angular","Flutter","Tailwind CSS","HTML","CSS"]],["Backend y datos",["Firebase / Firestore","Node.js","SQL Server","MySQL","SQLite"]],["Redes y sistemas",["Wi-Fi","Windows Server","Linux","PowerShell","Jira","SAP","MS Office"]],["IoT y herramientas",["Arduino","Wokwi","ThingSpeak","Git","GitHub"]]];
