@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darlan Perdomo | Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: sobrio y directo, como un CV bien diseñado.
+   IDEA: una ficha técnica: perfil fijo a la izquierda, el trabajo se desplaza a la derecha.
+   PICTURE: las capturas de cada proyecto, grandes, en marcos de navegador.
+   COLOUR and TYPE: blanco y negro con un campo menta #b8f5d0; Space Grotesk 700 + Inter.
+   LAYOUT: barra lateral negra fija en escritorio; en celular se apila arriba. */
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0d0d0d);--ink:light-dark(#0a0a0a,#efefef);
+  --soft:light-dark(#5b5b5b,#a3a3a3);--line:light-dark(#e6e6e6,#262626);
+  --mint:#b8f5d0;--card:light-dark(#f5f5f5,#161616)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #11a85a;outline-offset:3px}
+.layout{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);min-height:100vh}
+/* sidebar */
+aside{background:#0a0a0a;color:#f2f2f2;position:sticky;top:0;height:100vh;padding:36px 32px;display:flex;flex-direction:column;gap:20px;overflow:auto}
+.avatar{width:84px;height:84px;border-radius:22px;background:var(--mint);color:#0a0a0a;display:grid;place-items:center;font:700 34px "Space Grotesk"}
+aside h1{font-size:44px;letter-spacing:-.02em}
+.role{color:var(--mint);font-weight:600;margin-top:6px}
+aside p{margin:0;color:#b5b5b5;font-size:15px}
+.menu{display:flex;flex-direction:column;gap:2px}
+.menu a{text-decoration:none;padding:10px 12px;border-radius:10px;color:#cfcfcf;font-size:15px;display:flex;justify-content:space-between}
+.menu a:hover,.menu a.on{background:#1d1d1d;color:#fff}
+.menu a.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);align-self:center}
+.meta{display:grid;gap:8px;font-size:14px;color:#b5b5b5;margin-top:auto}
+.meta a{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.mint{background:var(--mint);color:#0a0a0a}
+.btn.ghost{border:1.5px solid #3a3a3a;color:#fff}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+/* main */
+main{padding:clamp(32px,5vw,72px) clamp(20px,5vw,72px);max-width:1000px;width:100%}
+section{padding-bottom:clamp(48px,7vw,88px)}
+.label{font-size:14px;font-weight:600;color:var(--soft);margin:0 0 10px}
+h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px}
+.intro{font-size:clamp(20px,2vw,26px);line-height:1.4;font-family:"Space Grotesk";font-weight:500;max-width:30ch;margin:0 0 20px}
+.lead{color:var(--soft);max-width:62ch;margin:0}
+/* experience */
+.job{border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.jobhead{background:var(--mint);color:#0a0a0a;padding:26px 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end}
+.jobhead h3{font-size:26px}.jobhead span{font-weight:600}
+.jobhead small{display:block;font-size:15px;margin-top:4px}
+.jobbody{padding:26px 28px;display:grid;gap:22px}
+.jobbody>p{margin:0;color:var(--soft)}
+.duties{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px}
+.duty{background:var(--card);border-radius:14px;padding:14px 16px}
+.duty b{display:block;font-size:15px}.duty span{font-size:14px;color:var(--soft)}
+.wins h4{font:700 17px "Space Grotesk";margin:0 0 10px}
+.wins ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.wins li{padding-left:28px;position:relative}
+.wins li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:#11a85a}
+.wins li::after{content:"";position:absolute;left:5px;top:9px;width:6px;height:3px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg)}
+.wins li strong{font-weight:600}
+.edu{margin-top:16px;border:1px solid var(--line);border-radius:22px;padding:24px 28px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.edu h3{font-size:22px}.edu p{margin:4px 0 0;color:var(--soft)}.edu span{color:var(--soft);font-weight:600}
+/* projects */
+.proj{display:grid;gap:28px}
+.p{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:center}
+.p:nth-child(even) .media{order:2}
+.frame{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 24px 50px -28px #0006}
+.frame .top{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.frame .top i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.frame img{display:block;width:100%;height:auto}
+.empty{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:20px;color:var(--soft);font-size:14px;background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 60%,transparent) 14px 15px)}
+.empty b{display:block;color:var(--ink);font:700 18px "Space Grotesk";margin-bottom:4px}
+.p h3{font-size:24px;margin:8px 0 10px}
+.p p{margin:0;color:var(--soft)}
+.badge{display:inline-block;margin:0 6px 6px 0;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--mint);color:#0a0a0a}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.visit{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+.soc a{color:var(--mint)}
+.edu+.edu{margin-top:12px}
+.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
+.course{background:var(--card);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.course span{font-size:13px;font-weight:600;color:#0a6b3a;background:var(--mint);align-self:flex-start;padding:2px 8px;border-radius:999px;margin-bottom:4px}
+.course b{font-size:15px;font-weight:600}.course small{font-size:14px;color:var(--soft)}
+.jobs{margin-top:12px;display:grid;gap:12px}
+.jb{border:1px solid var(--line);border-radius:22px;padding:24px 28px}
+.jbt{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.jbt h3{font-size:22px}.jbt small{display:block;color:var(--soft);font-size:15px;margin-top:4px}.jbt span{color:var(--soft);font-weight:600;white-space:nowrap}
+.jb p{margin:0;color:var(--soft);max-width:70ch}
+.badge.team{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.thumbs{display:flex;gap:8px;margin-top:10px}
+.thumbs button{flex:1;padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;background:none;min-height:44px}
+.thumbs button.on{border-color:#11a85a}
+.thumbs img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top}
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:var(--mint);border-radius:16px;padding:18px}
+.phones img{width:100%;border-radius:14px;box-shadow:0 14px 30px -14px #0007;display:block}
+.tags span{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px}
+.sk{border-top:2px solid var(--ink);padding-top:12px}
+.sk h3{font-size:18px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:14px;background:var(--card);padding:5px 10px;border-radius:8px}
+/* contact */
+.cta{background:#0a0a0a;color:#fff;border-radius:24px;padding:clamp(28px,4vw,48px)}
+.cta h2{color:#fff}.cta p{color:#b5b5b5;margin:0 0 22px;max-width:50ch}
+footer{color:var(--soft);font-size:13px;padding-top:28px}
+@media(max-width:960px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  aside{position:static;height:auto;padding:36px max(5vw,20px)}
+  .menu{flex-direction:row;flex-wrap:wrap}.menu a.on::after{display:none}
+  .meta{margin-top:0}
+  .p{grid-template-columns:minmax(0,1fr)}.p:nth-child(even) .media{order:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="avatar" aria-hidden="true">DP</div>
+  <div><h1>Darlan Perdomo</h1><div class="role">Técnico de Sistemas · Desarrollador web</div></div>
+  <p>Soporte de infraestructura TI y desarrollo de sistemas web desde San Pedro Sula, Honduras.</p>
+  <nav class="menu" id="menu">
+    <a href="#perfil">Perfil</a><a href="#experiencia">Experiencia</a><a href="#proyectos">Proyectos</a><a href="#habilidades">Habilidades</a><a href="#contacto">Contacto</a>
+  </nav>
+  <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">WhatsApp</a><a class="btn ghost" href="mailto:darlanpj17@gmail.com">Correo</a></div>
+  <div class="meta"><a href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a href="https://wa.me/50498812238">+504 9881-2238</a><span>San Pedro Sula, Honduras</span><span>Español nativo · Inglés intermedio</span>
+  <span class="soc"><a href="https://github.com/Darlangas17">GitHub</a> · <a href="https://www.linkedin.com/in/darlan-perdomo-4b889335a/">LinkedIn</a> · <a href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></span></div>
+</aside>
+
+<main>
+  <section id="perfil">
+    <p class="label">Perfil</p>
+    <p class="intro">Me aseguro de que la tecnología funcione todos los días y construyo software que la haga más fácil de manejar.</p>
+    <p class="lead">Estudiante de Ingeniería en Sistemas y Técnico de Sistemas en Smart Fit Honduras. Me interesan el desarrollo web, las redes y el soporte de sistemas. He llevado proyectos de software para un negocio real desde el diseño hasta su puesta en producción.</p>
+  </section>
+
+  <section id="experiencia">
+    <p class="label">Experiencia</p>
+    <h2>Mi experiencia</h2>
+    <article class="job">
+      <div class="jobhead"><div><h3>Técnico de Sistemas</h3><small>Smart Fit · San Pedro Sula</small></div><span>Octubre 2026 a hoy · Tiempo completo</span></div>
+      <div class="jobbody">
+        <p>Responsable del funcionamiento tecnológico de tres sucursales: Galerías, Ágora y Town Center.</p>
+        <div class="duties" id="duties"></div>
+        <div class="wins"><h4>Lo que he aportado</h4><ul id="wins"></ul></div>
+      </div>
+    </article>
+    <div class="jobs" id="jobs"></div>
+    <p class="label" style="margin-top:36px">Formación</p>
+    <div class="edu"><div><h3>Ingeniería en Sistemas</h3><p>Universidad Nacional Autónoma de Honduras (UNAH Campus Cortés)</p></div><span>2022 a hoy</span></div>
+    <div class="edu"><div><h3>Bachillerato Técnico Profesional en Electrónica</h3><p>Centro Técnico Hondureño Alemán (CTHA)</p></div><span>2016 a 2021</span></div>
+    <p class="label" style="margin-top:36px">Cursos</p>
+    <div class="courses" id="courses"></div>
+  </section>
+
+  <section id="proyectos">
+    <p class="label">Proyectos</p>
+    <h2>Lo que he desarrollado</h2>
+    <div class="proj" id="proj"></div>
+  </section>
+
+  <section id="habilidades">
+    <p class="label">Habilidades</p>
+    <h2>Con qué trabajo</h2>
+    <div class="skills" id="skills"></div>
+  </section>
+
+  <section id="contacto" style="padding-bottom:0">
+    <div class="cta">
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Disponible para desarrollo web freelance, automatización y soporte de infraestructura.</p>
+      <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">Escribirme por WhatsApp</a><a class="btn ghost" href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a class="btn ghost" href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></div>
+    </div>
+    <footer>© 2026 Darlan Perdomo</footer>
+  </section>
+</main>
+</div>
+
+<script>
+{
+const duties=[["Servidores","Equipos de cada unidad en línea"],["Control de acceso","Torniquetes de socios"],["Redes Wi-Fi","Cobertura en salas"],["Audio","Música y anuncios por horario"],["Cámaras","DVR y grabación"],["Climatización","Aires acondicionados"]];
+const courses=[
+ ["Desarrollo web","HTML, CSS, JavaScript y Node.js","Codédex · finalizado"],
+ ["Jira","Jira Fundamentals","Atlassian University"],
+ ["Soporte con tickets","Jira Service Management Fundamentals","Atlassian University"],
+ ["Angular","Tutorial oficial “Learn Angular”","angular.dev"],
+ ["Firebase","Codelabs oficiales de Firebase","Google Firebase"],
+ ["Flutter","Ruta oficial de aprendizaje","flutter.dev"],
+ ["Flutter","Curso de Flutter","Coddy"],
+ ["Tailwind CSS","Curso de Tailwind en español (David Ruiz)","freeCodeCamp"],
+ ["SQLite","SQLite Course","Flavio Copes"],
+ ["SAP","Learning journey introductorio","SAP Learning"],
+];
+document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
+const jobs=[
+ ["Desarrollador de software freelance","Proyectos para JTX Electrical","Por proyecto","Junto a Ángel Carias desarrollamos el panel administrativo con Angular 20, Tailwind CSS y Firebase/Firestore (calendario, módulos CRUD, mapa de proyectos) y el sitio web público con Angular 21. Ambos en producción. También trabajamos en Pumarket, una app móvil para emprendedores de la UNAH."],
+ ["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, información sobre tarifas y plazos de entrega, y procesamiento de reembolsos con atención personalizada."],
+ ["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."],
+];
+document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
+document.getElementById('duties').innerHTML=duties.map(([a,b])=>`<div class="duty"><b>${a}</b><span>${b}</span></div>`).join('');
+const wins=[
+ ["AppScheduler:","servicio de Windows en PowerShell y NSSM que abre y cierra la música (Listen X) según el horario de cada sucursal, en lugar de una tarea programada."],
+ ["Manual de verificación y corrección de fallas","para resolver incidencias comunes en las unidades."],
+ ["Checklist de validación de sistemas","por unidad para revisar servidores, torniquetes, audio y aires."],
+ ["Informe de cobertura Wi-Fi","de las tres sucursales, con propuesta de repetidores y presupuesto."],
+];
+document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</strong> ${b}</li>`).join('');
+
+/* Para poner una captura: guarda la imagen junto a este archivo y escribe su nombre en img, por ejemplo img:"jtx-admin.png" */
+const proj=[
+ {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",team:true,imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle. Incluye módulos CRUD con borrado lógico, notificaciones y confeti al completar registros.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
+ {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",team:true,imgs:["jtxweb-0.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
+ {t:"Pumarket, app para emprendedores de la UNAH",b:"App móvil",team:true,phone:true,imgs:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"],d:"Marketplace móvil donde estudiantes de la UNAH publican y venden sus productos y servicios, con buscador, categorías, registro e inicio de sesión, y una bienvenida con contacto por Facebook y WhatsApp.",tags:["App móvil","Marketplace"]},
+ {t:"TicketFlow",b:"En construcción",imgs:[],d:"Sistema de tickets de soporte de TI con prioridades, asignación a técnicos y seguimiento de estado.",tags:["C# / .NET","SQL Server","Angular"]},
+ {t:"Monitor de paciente UCI con IoT",b:"Proyecto académico",imgs:[],d:"Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab.",tags:["Wokwi","ThingSpeak","Python"]},
+];
+const media=(p,i)=>{
+ if(!p.imgs.length)return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><div class="empty"><div><b>Captura pendiente</b>Aquí va una imagen del proyecto</div></div></div>`;
+ if(p.phone)return `<div class="phones">${p.imgs.map(s=>`<img src="${s}" alt="Pantalla de ${p.t}" loading="lazy">`).join('')}</div>`;
+ return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><img id="m${i}" src="${p.imgs[0]}" alt="Captura de ${p.t}" loading="lazy"></div>${p.imgs.length>1?`<div class="thumbs">${p.imgs.map((s,k)=>`<button data-m="m${i}" data-s="${s}" class="${k?'':'on'}" aria-label="Ver captura ${k+1}"><img src="${s}" alt=""></button>`).join('')}</div>`:''}`;
+};
+document.getElementById('proj').innerHTML=proj.map((p,i)=>`<article class="p"><div class="media">${media(p,i)}</div><div><span class="badge">${p.b}</span>${p.team?'<span class="badge team">En equipo con Ángel Carias</span>':''}<h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.url?`<a class="visit" href="${p.url}">Ver sitio en vivo →</a>`:''}</div></article>`).join('');
+document.getElementById('proj').addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b)return;document.getElementById(b.dataset.m).src=b.dataset.s;[...b.parentNode.children].forEach(x=>x.classList.toggle('on',x===b))});
+
+const sk=[["Lenguajes",["C++","Java","C#","Python","JavaScript","TypeScript"]],["Frontend",["Angular","Flutter","Tailwind CSS","HTML","CSS"]],["Backend y datos",["Firebase / Firestore","Node.js","SQL Server","MySQL","SQLite"]],["Redes y sistemas",["Wi-Fi","Windows Server","Linux","PowerShell","Jira","SAP","MS Office"]],["IoT y herramientas",["Arduino","Wokwi","ThingSpeak","Git","GitHub"]]];
+document.getElementById('skills').innerHTML=sk.map(([a,b])=>`<div class="sk"><h3>${a}</h3><div class="chips">${b.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('');
+
+const links=[...document.querySelectorAll('#menu a')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section').forEach(s=>io.observe(s));
+}
+</script>
+</body>
+</html>
