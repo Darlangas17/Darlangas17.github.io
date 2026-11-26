@@ -207,6 +207,28 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .chip{position:absolute;font:700 13px "Space Grotesk";color:var(--night);background:var(--mint);padding:6px 12px;border-radius:12px;box-shadow:0 10px 24px -10px #000;animation:bob 4s ease-in-out infinite}
 .k1{right:6%;top:0;animation-delay:.2s}.k2{left:-2%;bottom:16%;animation-delay:1s}.k3{right:30%;top:-4%;animation-delay:1.8s;background:#fff}.k4{left:40%;bottom:2%;animation-delay:2.6s;background:#2ee57d}
 @keyframes bob{50%{transform:translateY(-12px) rotate(-3deg)}}
+
+/* portada en modo claro */
+.herobg{--hbg:light-dark(#eefaf3,#06110b);--hh:light-dark(#06110b,#ffffff);--hwho:light-dark(#0a6b3a,#b8f5d0);--hgrid:light-dark(#06110b12,#ffffff0d);background:var(--hbg);color:var(--hh);transition:background-color .6s}
+:root[data-theme=light] .herobg{--hbg:#eefaf3;--hh:#06110b;--hwho:#0a6b3a;--hgrid:#06110b12}
+:root[data-theme=dark] .herobg{--hbg:#06110b;--hh:#ffffff;--hwho:#b8f5d0;--hgrid:#ffffff0d}
+.herobg .hero h1,.herobg .role{color:var(--hh)}
+.herobg .who{color:var(--hwho)}
+.herobg .grid{background-image:linear-gradient(var(--hgrid) 1px,transparent 1px),linear-gradient(90deg,var(--hgrid) 1px,transparent 1px)}
+:root:not([data-theme=dark]) .herobg .btn.ghost{border-color:#06110b55;color:#06110b}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .herobg .btn.ghost{border-color:#ffffff55;color:#fff}}
+:root[data-theme=dark] .herobg .btn.ghost{border-color:#ffffff55;color:#fff}
+:root:not([data-theme=dark]) .herobg .blob{opacity:.35}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .herobg .blob{opacity:.55}}
+:root[data-theme=dark] .herobg .blob{opacity:.55}
+:root:not([data-theme=dark]) .b2{background:#7fd0ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .b2{background:#0f5c8c}}
+:root[data-theme=dark] .b2{background:#0f5c8c}
+:root:not([data-theme=dark]) .herobg #role{background-image:linear-gradient(90deg,#0a6b3a,#11a85a,#0a6b3a)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .herobg #role{background-image:linear-gradient(90deg,#b8f5d0,#2ee57d,#b8f5d0)}}
+:root[data-theme=dark] .herobg #role{background-image:linear-gradient(90deg,#b8f5d0,#2ee57d,#b8f5d0)}
+:root:not([data-theme=dark]) .caret{background:#11a85a}
+.marq{background:light-dark(#06110b,#000)}
 /* transición de tema */
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-new(root){z-index:2}
@@ -218,7 +240,10 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .lb{position:fixed;inset:0;z-index:50;background:#000d;display:none;align-items:center;justify-content:center;padding:4vw}
 .lb.open{display:flex;animation:fade .25s}
 .lb img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 30px 80px #000}
-.lb button{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;font-size:22px;cursor:pointer}
+.lb button{position:absolute;top:18px;right:18px;width:52px;height:52px;border-radius:50%;border:1.5px solid #ffffff55;background:#06110bcc;color:#fff;font:400 30px/1 Inter;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px);transition:transform .3s cubic-bezier(.3,1.6,.5,1),background .2s,border-color .2s}
+.lb button:hover{transform:rotate(90deg) scale(1.08);background:var(--mint);color:#06110b;border-color:var(--mint)}
+.lb img{animation:zoomin .35s cubic-bezier(.2,.9,.2,1)}
+@keyframes zoomin{from{transform:scale(.92);opacity:0}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @media(max-width:900px){.hero,.show,.agrid,.cta,.cols2{grid-template-columns:minmax(0,1fr)}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.links{display:none}.col{height:215px}.tk b{font-size:11.5px}.stage{aspect-ratio:4/3}}
@@ -306,7 +331,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
   <footer>© 2026 Darlan Perdomo · San Pedro Sula, Honduras</footer>
 </div></section>
 
-<div class="lb" id="lb" role="dialog" aria-label="Imagen ampliada"><button id="lbX" aria-label="Cerrar">×</button><img id="lbImg" alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-label="Imagen ampliada"><button id="lbX" aria-label="Cerrar imagen">✕</button><img id="lbImg" alt=""></div>
 
 <script>
 {
