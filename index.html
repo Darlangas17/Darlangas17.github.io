@@ -276,6 +276,27 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .aboutp{margin:0 0 12px;color:var(--soft);max-width:46ch}
 .intro{margin-bottom:10px}
 @media(max-width:600px){.me{width:170px;height:170px}}
+
+/* app de ahorro */
+.sav{margin-top:16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(18px,3vw,32px);align-items:center;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,28px);transition:border-color .3s,transform .3s}
+.sav:hover{border-color:var(--ok);transform:translateY(-3px)}
+.sav h3{font-size:clamp(22px,2.4vw,28px);margin:10px 0 6px}.sav p{margin:0;color:var(--soft)}
+.donut{position:relative;width:130px;height:130px;display:grid;place-items:center;text-align:center}
+.donut svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.dtrack{fill:none;stroke:var(--line);stroke-width:14}
+.dseg{fill:none;stroke-width:14;stroke-linecap:round;stroke-dasharray:0 100}
+.d1{stroke:#11a85a}.d2{stroke:#2ee57d}.d3{stroke:#b8f5d0}
+.sav.in .d1{animation:seg1 6s ease-in-out infinite}.sav.in .d2{animation:seg2 6s ease-in-out infinite}.sav.in .d3{animation:seg3 6s ease-in-out infinite}
+@keyframes seg1{0%{stroke-dasharray:0 100}25%,85%{stroke-dasharray:38 62;stroke-dashoffset:0}100%{stroke-dasharray:0 100}}
+@keyframes seg2{0%,10%{stroke-dasharray:0 100;stroke-dashoffset:-38}40%,85%{stroke-dasharray:24 76;stroke-dashoffset:-38}100%{stroke-dasharray:0 100;stroke-dashoffset:-38}}
+@keyframes seg3{0%,25%{stroke-dasharray:0 100;stroke-dashoffset:-62}55%,85%{stroke-dasharray:16 84;stroke-dashoffset:-62}100%{stroke-dasharray:0 100;stroke-dashoffset:-62}}
+.donut>b,.donut>small{position:relative;z-index:1}.donut>div{position:relative;z-index:1}.donut b{font:700 26px/1 "Space Grotesk";display:block}.donut small{font-size:11.5px;color:var(--soft);display:block;margin-top:2px}
+.bars{display:flex;align-items:flex-end;gap:7px;height:110px;width:130px}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(var(--glow),var(--ok));height:var(--h);transform-origin:bottom;transform:scaleY(.15)}
+.sav.in .bars i{animation:barup 6s ease-in-out infinite}
+.bars i:nth-child(2){animation-delay:.12s!important}.bars i:nth-child(3){animation-delay:.24s!important}.bars i:nth-child(4){animation-delay:.36s!important}.bars i:nth-child(5){animation-delay:.48s!important}.bars i:nth-child(6){animation-delay:.6s!important}
+@keyframes barup{0%{transform:scaleY(.15)}30%,85%{transform:scaleY(1)}100%{transform:scaleY(.15)}}
+@media(max-width:800px){.sav{grid-template-columns:minmax(0,1fr)}.bars{display:none}.donut{margin:0 auto}}
 /* transición de tema */
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-new(root){z-index:2}
@@ -321,7 +342,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 <div class="marq" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section class="wrap stats">
-  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software</p><i></i></div>
+  <div class="stat rv"><b data-n="6">0</b><p>proyectos de software</p><i></i></div>
   <div class="stat rv"><b data-n="2">0</b><p>sistemas en producción en EE. UU.</p><i></i></div>
   <div class="stat rv"><b data-n="3">0</b><p>sucursales Smart Fit a mi cargo</p><i></i></div>
   <div class="stat rv"><b data-n="10">0</b><p>cursos completados</p><i></i></div>
@@ -351,13 +372,17 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
       </svg>
     </div>
   </article>
+  <article class="sav rv">
+    <div class="donut" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" class="dtrack"/><circle cx="60" cy="60" r="44" class="dseg d1" pathLength="100"/><circle cx="60" cy="60" r="44" class="dseg d2" pathLength="100"/><circle cx="60" cy="60" r="44" class="dseg d3" pathLength="100"/></svg><div><b id="savp">0%</b><small>de la meta</small></div></div>
+    <div><span class="pbadge">Proyecto universitario</span><h3>App de ahorro</h3><p>Control de ingresos, gastos y metas de ahorro, con gráficos y varias monedas.</p><div class="chips"><span>Flutter</span><span>SQLite</span><span>Gráficos</span></div></div>
+    <div class="bars" aria-hidden="true"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i><i style="--h:85%"></i><i style="--h:70%"></i><i style="--h:95%"></i></div>
+  </article>
 </div></section>
 
 <section class="band about" id="sobre-mi"><div class="wrap">
   <div class="agrid">
     <div class="rv">
-      <div class="me"><div class="ring"></div><img src="darlan.jpg" alt="Foto de Darlan Perdomo" width="220" height="220"><span class="mebadge"><i></i>Disponible</span></div>
-      <p class="label">Sobre mí</p>
+            <p class="label">Sobre mí</p>
       <p class="intro">Hola, soy Darlan.</p>
       <p class="aboutp">Desarrollador web y mobile de San Pedro Sula. Construyo sistemas completos, desde el diseño hasta ponerlos en producción, con Angular, Flutter, .NET y Firebase.</p>
       <p class="aboutp">Hoy trabajo como Técnico de Sistemas en Smart Fit, a cargo de redes, servidores y equipos de tres sucursales. Busco seguir creciendo como desarrollador en un equipo donde aprender y aportar.</p>
@@ -471,6 +496,9 @@ addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')})
    gs.forEach((g,i)=>{const on=t>=names[i][1]-.001;if(on&&!g.classList.contains('on')){g.classList.add('on','hit');setTimeout(()=>g.classList.remove('hit'),900)}if(!on)g.classList.remove('on')})}
  if(reduce){place(1)}else{const D=7000,MOVE=.78;let t0=null;const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
    const f=ts=>{if(!t0)t0=ts;let k=((ts-t0)%D)/D;place(k<MOVE?ease(k/MOVE):1);requestAnimationFrame(f)};requestAnimationFrame(f)}}
+
+/* porcentaje de la app de ahorro */
+{const el=document.getElementById('savp');if(reduce){el.textContent='78%'}else{let t0=null;const f=ts=>{if(!t0)t0=ts;const k=((ts-t0)%6000)/6000;const v=k<.55?Math.round(78*Math.min(1,k/.55)):k<.85?78:Math.round(78*(1-(k-.85)/.15));el.textContent=v+'%';requestAnimationFrame(f)};requestAnimationFrame(f)}}
 /* sobre mí */
 $('wins').innerHTML=["Diagnóstico de Wi-Fi e instalación de repetidores","Soporte de AppScheduler, la música automática de las sucursales","Manual de fallas y checklist por sucursal","Plan de contingencia propuesto (pendiente de aprobación)"].map((t,i)=>`<li style="--i:${i}">${t}</li>`).join('');
 $('tl').innerHTML=[["Desarrollador freelance","JTX Electrical","Por proyecto"],["Servicio al Cliente","IntouchCX","2022 a 2023"],["Práctica en Electrónica","Honduras Electrical Distribution System","2021"]].map(([a,b,c],i)=>`<div class="jb rv" style="--d:${i*.12}s;--dx:-30px"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div>`).join('');
