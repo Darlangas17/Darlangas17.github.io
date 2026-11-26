@@ -352,7 +352,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
   <p class="label">Proyectos</p><h2 class="uh rv">Lo que he construido</h2>
   <div class="show rv" id="show">
     <div class="stage" id="stage">
-      <div class="chrome"><i></i><i></i><i></i><span id="url">ticketflow.app</span></div>
+      <div class="chrome"><i></i><i></i><i></i><span id="url">TicketFlow · demo</span></div>
       <div class="slides" id="slides"></div>
       <div class="phones" id="phones"></div>
       <span class="cap" id="cap"></span>
@@ -432,7 +432,7 @@ const roles=["desarrollador web","desarrollador mobile"],roleEl=$('role');
 if(!reduce){let ri=0,ci=roles[0].length,del=true;setTimeout(function loop(){if(del){ci--;if(ci<=0){del=false;ri=(ri+1)%roles.length}}else{ci++;if(ci>=roles[ri].length){del=true;roleEl.textContent=roles[ri];return setTimeout(loop,2000)}}roleEl.textContent=roles[ri].slice(0,Math.max(ci,0));setTimeout(loop,del?45:80)},2600)}
 
 /* laptop y celular con proyectos */
-const L=[["tf/dashboard.jpg","Web · TicketFlow"],["backoffice-1.jpg","Web · Backoffice JTX"],["jtxweb-0.jpg","Web · Sitio JTX"],["tf/dashboard-dark.jpg","Web · TicketFlow"],["backoffice-projects.jpg","Web · Backoffice JTX"],["jtxweb-services.jpg","Web · Sitio JTX"]];
+const L=[["tf/dashboard.jpg","Web · TicketFlow"],["backoffice-1.jpg","Web · Backoffice JTX"],["jtxweb-0.jpg","Web · Sitio JTX"],["tf/dashboard-dark.jpg","Web · TicketFlow"],["jtxweb-services.jpg","Web · Sitio JTX"]];
 const M=["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"];
 const ls=$('lscreen'),ps=$('pscreen'),ltag=$('ltag');
 ls.innerHTML=L.map(([s,a])=>`<img src="${s}" alt="${a}">`).join('');ps.innerHTML=M.map(s=>`<img src="${s}" alt="Pumarket">`).join('');
@@ -447,10 +447,10 @@ $('track').innerHTML=[...tech,...tech].map(t=>`<span>${t}</span>`).join('');
 
 /* vitrina de proyectos que se muestra sola */
 const P=[
- {t:"TicketFlow",tag:"Full stack",d:"Mesa de ayuda TI con roles, dashboard y modo oscuro.",url:"ticketflow.app",stack:["ASP.NET Core","SQL Server","Angular","Docker"],
+ {t:"TicketFlow",tag:"Full stack",d:"Mesa de ayuda TI con roles, dashboard y modo oscuro.",url:"TicketFlow · demo",stack:["ASP.NET Core","SQL Server","Angular","Docker"],
   imgs:[["tf/dashboard.jpg","Dashboard"],["tf/ticket-list.jpg","Lista de tickets"],["tf/ticket-detail.jpg","Detalle del ticket"],["tf/dashboard-dark.jpg","Modo oscuro"],["tf/admin-users.jpg","Usuarios y roles"]]},
  {t:"Backoffice JTX Electrical",tag:"En producción",d:"Panel para una empresa eléctrica de Austin, Texas.",url:"jtxelectricaladmin.web.app",link:"https://jtxelectricaladmin.web.app",stack:["Angular","Firebase","Tailwind","Google Maps"],
-  imgs:[["backoffice-1.jpg","Mapa de proyectos"],["backoffice-projects.jpg","Módulo de proyectos"],["backoffice-0.jpg","Calendario y clientes"],["backoffice-2.jpg","Vista de calle"]]},
+  imgs:[["backoffice-1.jpg","Mapa de proyectos"],["backoffice-0.jpg","Calendario y clientes"],["backoffice-2.jpg","Vista de calle"]]},
  {t:"Sitio web JTX Electrical",tag:"En producción",d:"Sitio institucional con reservas y WhatsApp.",url:"jtxweb-1302f.web.app",link:"https://jtxweb-1302f.web.app",stack:["Angular","Tailwind"],
   imgs:[["jtxweb-0.jpg","Inicio"],["jtxweb-services.jpg","Servicios"],["jtxweb-why.jpg","Por qué elegirlos"],["jtxweb-1.jpg","Promesa de calidad"]]},
  {t:"Pumarket",tag:"App móvil",d:"Marketplace para emprendedores de la UNAH.",url:"Pumarket · app móvil",stack:["App móvil","Marketplace"],phones:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"]}
