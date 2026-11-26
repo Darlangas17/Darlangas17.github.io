@@ -238,19 +238,19 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .plc p{margin:0;color:var(--soft)}
 .route{position:relative;color:var(--ink)}
 .route svg{width:100%;height:auto;display:block;overflow:visible}
-.rdone{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 6s ease-in-out infinite}
-@keyframes draw{0%{stroke-dashoffset:1}80%,100%{stroke-dashoffset:0}}
-.stop circle{fill:var(--bg);stroke:var(--line);stroke-width:3;transition:fill .3s}
-.stop text{font:600 12px Inter;fill:var(--soft);text-anchor:middle}
-.stop{animation:stopon 6s infinite}
-.s1{animation-delay:0s}.s2{animation-delay:1.3s}.s3{animation-delay:2.9s}.s4{animation-delay:4.6s}
-@keyframes stopon{0%,4%{--x:0}5%,95%{--x:1}}
-.s1 circle,.s2 circle,.s3 circle,.s4 circle{animation:dotlit 6s infinite;animation-delay:inherit}
-@keyframes dotlit{0%,3%{fill:var(--bg);stroke:var(--line)}6%,92%{fill:#2ee57d;stroke:#11a85a}100%{fill:var(--bg);stroke:var(--line)}}
-.truck{offset-path:path("M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70");offset-rotate:auto;animation:drive 6s ease-in-out infinite}
-.truck rect,.truck circle{fill:var(--ink)}.truck rect:first-child{fill:#11a85a}
-@keyframes drive{0%{offset-distance:0%}80%,100%{offset-distance:100%}}
-.pk{position:absolute;right:4%;top:0;font:600 12px Inter;background:var(--night);color:var(--mint);padding:4px 10px;border-radius:99px;animation:bob 4s ease-in-out infinite}
+.plchead{display:flex;align-items:center;gap:12px}
+.plchead img{width:56px;height:56px;border-radius:14px;object-fit:cover;box-shadow:0 8px 20px -10px #0006;background:#fff}
+.plc .chips{margin-top:14px}
+#rsvg{width:100%;height:auto;display:block;overflow:visible}
+.rs circle{fill:var(--bg);stroke:currentColor;stroke-opacity:.3;stroke-width:3;transition:fill .35s,stroke .35s,r .35s}
+.rs text{font:600 12.5px Inter;fill:var(--soft);text-anchor:middle;transition:fill .35s}
+.rs.on circle{fill:#2ee57d;stroke:#11a85a;stroke-opacity:1}
+.rs.on text{fill:var(--ink)}
+.rs .halo2{fill:none;stroke:#2ee57d;stroke-width:2;opacity:0}
+.rs.hit .halo2{animation:hitring .9s ease-out}
+@keyframes hitring{from{opacity:.9;r:9px}to{opacity:0;r:26px}}
+.tagbg{fill:light-dark(#06110b,#b8f5d0)}.tagtx{fill:light-dark(#b8f5d0,#06110b)}:root[data-theme=dark] .tagbg{fill:#b8f5d0}:root[data-theme=dark] .tagtx{fill:#06110b}:root[data-theme=light] .tagbg{fill:#06110b}:root[data-theme=light] .tagtx{fill:#b8f5d0}
+#rtruck .cab{fill:var(--ink)}#rtruck .wh{fill:var(--ink)}
 @media(max-width:800px){.plc{grid-template-columns:minmax(0,1fr)}}
 /* línea de tiempo y logros mejorados */
 .tl{padding-left:34px;margin-top:14px;gap:12px}
@@ -340,18 +340,15 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
     <div class="list" id="list"></div>
   </div>
   <article class="plc rv">
-    <div class="plctxt"><span class="pbadge">Proyecto universitario</span><h3>Premium Logistics Cargo</h3><p>Sistema de gestión para una empresa de paquetería: envíos, clientes y seguimiento de paquetes.</p></div>
+    <div class="plctxt"><div class="plchead"><img src="plc-logo.jpg" alt="Logo de Premium Logistics Cargo" width="56" height="56"><span class="pbadge">Proyecto universitario</span></div><h3>Premium Logistics Cargo</h3><p>App para una empresa de paquetería: paquetes, cargas, clientes, bodegas, mapas y reportes en PDF.</p><div class="chips"><span>Flutter</span><span>Firebase</span><span>Google Maps</span><span>Reportes PDF</span></div></div>
     <div class="route" aria-hidden="true">
-      <svg viewBox="0 0 520 170" preserveAspectRatio="xMidYMid meet">
-        <path id="rpath" d="M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 10" opacity=".35"/>
-        <path d="M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70" fill="none" stroke="#2ee57d" stroke-width="4" stroke-linecap="round" class="rdone" pathLength="1"/>
-        <g class="stop s1"><circle cx="30" cy="120" r="9"/><text x="30" y="150">Bodega</text></g>
-        <g class="stop s2"><circle cx="196" cy="104" r="9"/><text x="196" y="138">En ruta</text></g>
-        <g class="stop s3"><circle cx="350" cy="52" r="9"/><text x="350" y="30">Aduana</text></g>
-        <g class="stop s4"><circle cx="490" cy="70" r="9"/><text x="490" y="104">Entregado</text></g>
-        <g class="truck"><rect x="-17" y="-11" width="22" height="18" rx="3"/><rect x="5" y="-5" width="12" height="12" rx="2"/><circle cx="-10" cy="9" r="3.5"/><circle cx="11" cy="9" r="3.5"/></g>
+      <svg viewBox="0 0 520 190" id="rsvg">
+        <path id="rbase" d="M40 130 C 130 40, 210 170, 300 95 S 440 50, 485 85" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 9" opacity=".28" stroke-linecap="round"/>
+        <path id="rtrail" d="M40 130 C 130 40, 210 170, 300 95 S 440 50, 485 85" fill="none" stroke="#2ee57d" stroke-width="4.5" stroke-linecap="round"/>
+        <g id="rstops"></g>
+        <g id="rtruck"><g transform="translate(-14,-11)"><rect width="19" height="15" rx="3" fill="#11a85a"/><rect x="19" y="5" width="10" height="10" rx="2" class="cab"/><circle cx="6" cy="16" r="3.4" class="wh"/><circle cx="23" cy="16" r="3.4" class="wh"/></g></g>
+        <g id="rtag"><rect x="-56" y="-46" width="112" height="22" rx="11" class="tagbg"/><text x="0" y="-31" text-anchor="middle" class="tagtx" font-size="11.5" font-weight="600" font-family="Inter">Paquete #PL-2045</text></g>
       </svg>
-      <span class="pk">Paquete #PL-2045</span>
     </div>
   </article>
 </div></section>
@@ -462,6 +459,18 @@ st.addEventListener('click',()=>{const on=slides.querySelector('img.on')||phones
 lb.addEventListener('click',e=>{if(e.target!==lbImg)lb.classList.remove('open')});
 addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
 
+
+/* ruta de Premium Logistics sincronizada */
+{const path=document.getElementById('rbase'),trail=document.getElementById('rtrail'),truck=document.getElementById('rtruck'),tag=document.getElementById('rtag'),sg=document.getElementById('rstops');
+ const Ltot=path.getTotalLength(),names=[["Recibido",0,1],["Bodega",.34,1],["En tránsito",.67,1],["Entregado",1,1]];
+ trail.style.strokeDasharray=Ltot;trail.style.strokeDashoffset=Ltot;
+ sg.innerHTML=names.map(([n,t,side])=>{const pt=path.getPointAtLength(Ltot*t);return `<g class="rs"><circle class="halo2" cx="${pt.x}" cy="${pt.y}" r="9"/><circle cx="${pt.x}" cy="${pt.y}" r="9"/><text x="${pt.x}" y="${pt.y+(side>0?30:-18)}">${n}</text></g>`}).join('');
+ const gs=[...sg.children];
+ function place(t){const l=Ltot*t,pt=path.getPointAtLength(l),pt2=path.getPointAtLength(Math.min(Ltot,l+1)),ang=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
+   truck.setAttribute('transform',`translate(${pt.x},${pt.y}) rotate(${ang})`);tag.setAttribute('transform',`translate(${pt.x},${pt.y})`);trail.style.strokeDashoffset=Ltot*(1-t);
+   gs.forEach((g,i)=>{const on=t>=names[i][1]-.001;if(on&&!g.classList.contains('on')){g.classList.add('on','hit');setTimeout(()=>g.classList.remove('hit'),900)}if(!on)g.classList.remove('on')})}
+ if(reduce){place(1)}else{const D=7000,MOVE=.78;let t0=null;const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+   const f=ts=>{if(!t0)t0=ts;let k=((ts-t0)%D)/D;place(k<MOVE?ease(k/MOVE):1);requestAnimationFrame(f)};requestAnimationFrame(f)}}
 /* sobre mí */
 $('wins').innerHTML=["Diagnóstico de Wi-Fi e instalación de repetidores","Soporte de AppScheduler, la música automática de las sucursales","Manual de fallas y checklist por sucursal","Plan de contingencia propuesto (pendiente de aprobación)"].map((t,i)=>`<li style="--i:${i}">${t}</li>`).join('');
 $('tl').innerHTML=[["Desarrollador freelance","JTX Electrical","Por proyecto"],["Servicio al Cliente","IntouchCX","2022 a 2023"],["Práctica en Electrónica","Honduras Electrical Distribution System","2021"]].map(([a,b,c],i)=>`<div class="jb rv" style="--d:${i*.12}s;--dx:-30px"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div>`).join('');
