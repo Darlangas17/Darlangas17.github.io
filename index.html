@@ -142,6 +142,53 @@ nav .links a:hover,nav .links a.on{color:var(--ink);background:var(--card)}
 .cta .meta{display:grid;gap:6px;color:#b5b5b5;font-size:15px;margin-top:18px}
 .cta .meta a{color:var(--mint)}
 footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
+
+/* motion */
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--ok);transform-origin:0 50%;transform:scaleX(0);z-index:30}
+.herobg{position:relative;overflow:hidden}
+.herobg::before{content:"";position:absolute;width:640px;height:640px;right:-160px;top:-180px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--mint) 70%,transparent),transparent 65%);animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
+.herobg::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(380px circle at var(--mx,70%) var(--my,30%),color-mix(in srgb,var(--mint) 35%,transparent),transparent 70%)}
+.hero{position:relative;z-index:1}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-12%,14%,0) scale(1.15)}}
+.h1w{display:inline-block;white-space:nowrap}
+.ch{display:inline-block;opacity:0;transform:translateY(.7em) rotate(5deg);animation:rise .8s cubic-bezier(.2,.9,.2,1) forwards;animation-delay:calc(var(--i)*35ms + 120ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+.htxt .who,.htxt .big,.htxt .btns,.htxt small{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.9,.2,1) forwards}
+.htxt .who{animation-delay:.05s}.htxt .big{animation-delay:.9s}.htxt .btns{animation-delay:1.05s}.htxt small{animation-delay:1.2s}
+#stage{opacity:0;transform:translateY(30px) scale(.96);animation:rise 1s cubic-bezier(.2,.9,.2,1) .4s forwards}
+.board{animation:floaty 6s ease-in-out 1.6s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.shine{position:relative;overflow:hidden}
+.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:shine 4s ease-in-out 2s infinite}
+@keyframes shine{0%,30%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
+.marq{background:#0a0a0a;color:var(--mint);overflow:hidden;white-space:nowrap;padding:16px 0;position:relative;z-index:1}
+.track{display:inline-flex;animation:slide 32s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+.track span{font:700 clamp(18px,2vw,24px) "Space Grotesk";padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+.track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);opacity:.6}
+@keyframes slide{to{transform:translateX(-50%)}}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding-block:clamp(40px,6vw,72px)}
+.stat{border-top:2px solid var(--ink);padding-top:14px}
+.stat b{font:700 clamp(44px,5vw,64px)/1 "Space Grotesk";display:block}
+.stat p{margin:8px 0 0;color:var(--soft);font-size:15px}
+.tilt{transition:transform .25s ease,box-shadow .25s ease;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.par{transform:translateY(var(--py,0px));will-change:transform}
+.tilt:hover{box-shadow:0 40px 70px -30px #0009}
+.rv{transition-delay:var(--d,0s)}
+.otro{transition:transform .25s,border-color .25s,padding-left .3s}
+.otro:hover{padding-left:30px}
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--ok);transform-origin:top;transform:scaleY(0);transition:transform 1.2s ease .2s}
+.tl.in::before{transform:scaleY(1)}
+.tl .jb{position:relative}
+.tl .jb::before{content:"";position:absolute;left:-22px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--ok)}
+.chips span,.course,.duties span{transition:transform .2s,background .2s}
+.chips span:hover,.duties span:hover{transform:translateY(-3px);background:var(--mint);color:#0a0a0a}
+.course:hover{transform:translateY(-4px)}
+.wins li{opacity:0;transform:translateX(-12px);transition:opacity .5s ease,transform .5s ease;transition-delay:calc(var(--i,0)*120ms + .2s)}
+.job.in .wins li,.rv.in .wins li{opacity:1;transform:none}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.ch,.htxt .who,.htxt .big,.htxt .btns,.htxt small,#stage{opacity:1;transform:none;animation:none}.board,.track,.herobg::before,.shine::after{animation:none}.tl::before{transform:none}.wins li{opacity:1;transform:none}.prog{display:none}}
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:50;background:#000c;display:none;align-items:center;justify-content:center;padding:4vw}
 .lb.open{display:flex;animation:fade .25s}
@@ -154,18 +201,19 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 </style>
 </head>
 <body>
+<div class="prog" id="prog"></div>
 <nav><div class="wrap"><b>Darlan Perdomo</b>
 <div class="links" id="links"><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a></div></div></nav>
 
-<header class="wrap hero">
-  <div class="rv">
+<div class="herobg" id="herobg"><header class="wrap hero">
+  <div class="htxt">
     <p class="who">Darlan Perdomo · San Pedro Sula, Honduras</p>
-    <h1>Construyo sistemas que resuelven problemas reales</h1>
+    <h1 id="h1">Construyo sistemas que resuelven problemas reales</h1>
     <p class="big">Desarrollo aplicaciones web y móviles con Angular, .NET, Flutter y Firebase, y doy soporte a la tecnología de empresas con varias sucursales.</p>
-    <div class="btns"><a class="btn fill" href="#proyectos">Ver mis proyectos</a><a class="btn" href="https://wa.me/50498812238">Escribirme por WhatsApp</a></div>
+    <div class="btns"><a class="btn fill shine" href="#proyectos">Ver mis proyectos</a><a class="btn" href="https://wa.me/50498812238">Escribirme por WhatsApp</a></div>
     <small>Estudiante de Ingeniería en Sistemas en la UNAH y Técnico de Sistemas en Smart Fit Honduras.</small>
   </div>
-  <div class="field rv" aria-label="Animación de un tablero de tickets de soporte">
+  <div class="field" id="stage" aria-label="Animación de un tablero de tickets de soporte">
     <div class="board">
       <div class="bh"><b><i></i>Tickets de soporte</b><span id="st">Atendiendo…</span></div>
       <div class="cols">
@@ -176,7 +224,14 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
       <div class="bf"><span><strong id="cnt">0</strong>de 5 tickets resueltos</span><button class="again" id="again">Repetir</button></div>
     </div>
   </div>
-</header>
+</header></div>
+<div class="marq" aria-hidden="true"><div class="track" id="track"></div></div>
+<section class="wrap stats" id="stats">
+  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software entregados</p></div>
+  <div class="stat rv"><b data-n="2">0</b><p>sistemas en producción para una empresa de EE. UU.</p></div>
+  <div class="stat rv"><b data-n="3">0</b><p>sucursales de Smart Fit a mi cargo</p></div>
+  <div class="stat rv"><b data-n="10">0</b><p>cursos completados</p></div>
+</section>
 
 <section class="band" id="proyectos" style="padding-top:clamp(24px,4vw,48px)"><div class="wrap">
   <div class="rv"><p class="label">Proyectos</p><h2>Lo que he construido</h2><p class="lead">Sistemas en producción para clientes, apps móviles y mi proyecto más completo: TicketFlow. Toca cualquier imagen para verla más grande.</p></div>
@@ -194,10 +249,9 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
         <li>Dashboard con métricas por estado, prioridad, sucursal y categoría.</li>
         <li>Roles de administrador, técnico y solicitante con autenticación JWT.</li>
         <li>Comentarios, historial de cambios, modo oscuro y diseño para celular.</li>
-        <li>Pruebas automatizadas, Docker y CI con GitHub Actions.</li>
+        <li>Pruebas automatizadas y despliegue con Docker.</li>
       </ul>
       <div class="tags"><span>.NET 8 / ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>Angular 21</span><span>Angular Material</span><span>Docker</span><span>xUnit</span></div>
-      <a class="visit" href="https://github.com/Darlangas17/ticketflow">Ver código en GitHub →</a>
       <div class="phone" id="tfPhone"><img src="tf/mobile-tickets.jpg" alt="TicketFlow en celular" loading="lazy"></div>
     </div>
   </article>
@@ -226,7 +280,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
           <ul class="wins" id="wins"></ul>
         </div>
       </article>
-      <div class="jobs" id="jobs"></div>
+      <div class="jobs tl" id="jobs"></div>
     </div>
   </div>
 
@@ -245,7 +299,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
   <div class="cta rv">
     <div><h2>¿Tienes un sistema en mente?</h2><p>Disponible para prácticas, empleo y proyectos de desarrollo web, móvil y soporte TI.</p>
       <div class="meta"><a href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a href="https://wa.me/50498812238">+504 9881-2238</a></div></div>
-    <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">WhatsApp</a><a class="btn" href="mailto:darlanpj17@gmail.com">Correo</a><a class="btn" href="https://github.com/Darlangas17">GitHub</a><a class="btn" href="https://www.linkedin.com/in/darlan-perdomo-4b889335a/">LinkedIn</a><a class="btn" href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></div>
+    <div class="btns"><a class="btn mint shine" href="https://wa.me/50498812238">WhatsApp</a><a class="btn" href="mailto:darlanpj17@gmail.com">Correo</a><a class="btn" href="https://github.com/Darlangas17">GitHub</a><a class="btn" href="https://www.linkedin.com/in/darlan-perdomo-4b889335a/">LinkedIn</a><a class="btn" href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></div>
   </div>
   <footer>© 2026 Darlan Perdomo · San Pedro Sula, Honduras</footer>
 </div></section>
@@ -293,8 +347,8 @@ document.getElementById('tfPhone').addEventListener('click',()=>openLb('tf/mobil
 
 /* proyectos */
 const proj=[
- {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
- {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",imgs:["jtxweb-0.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
+ {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",imgs:["backoffice-1.jpg","backoffice-projects.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
+ {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",imgs:["jtxweb-0.jpg","jtxweb-services.jpg","jtxweb-why.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
  {t:"Pumarket, app para emprendedores de la UNAH",b:"App móvil",phone:true,imgs:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"],d:"Marketplace móvil donde estudiantes de la UNAH publican y venden sus productos y servicios, con buscador, categorías, registro e inicio de sesión, y una bienvenida con contacto por Facebook y WhatsApp.",tags:["App móvil","Marketplace"]},
 ];
 const media=(p,i)=>p.phone
@@ -319,13 +373,37 @@ const jobs=[["Desarrollador de software freelance","Desarrollo web y móvil","Po
 document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
 const courses=[["Desarrollo web","HTML, CSS, JavaScript y Node.js","Codédex"],["Jira","Jira Fundamentals","Atlassian University"],["Soporte con tickets","Jira Service Management Fundamentals","Atlassian University"],["Angular","Tutorial oficial “Learn Angular”","angular.dev"],["Firebase","Codelabs oficiales","Google Firebase"],["Flutter","Ruta oficial de aprendizaje","flutter.dev"],["Flutter","Curso de Flutter","Coddy"],["Tailwind CSS","Curso en español (David Ruiz)","freeCodeCamp"],["SQLite","SQLite Course","Flavio Copes"],["SAP","Learning journey introductorio","SAP Learning"]];
 document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
-const sk=[["Lenguajes",["C#","TypeScript","JavaScript","Python","Java","C++"]],["Frontend",["Angular","Flutter","Tailwind CSS","Angular Material","HTML","CSS"]],["Backend y datos",["ASP.NET Core","EF Core","Node.js","Firebase","SQL Server","MySQL","SQLite"]],["DevOps y herramientas",["Docker","GitHub Actions","Git","Jira","SAP"]],["Infraestructura",["Windows Server","Linux","Redes Wi-Fi","PowerShell","NSSM"]]];
+const sk=[["Lenguajes",["C#","TypeScript","JavaScript","Python","Java","C++"]],["Frontend",["Angular","Flutter","Tailwind CSS","Angular Material","HTML","CSS"]],["Backend y datos",["ASP.NET Core","EF Core","Node.js","Firebase","SQL Server","MySQL","SQLite"]],["DevOps y herramientas",["Docker","Git","Jira","SAP"]],["Infraestructura",["Windows Server","Linux","Redes Wi-Fi","PowerShell","NSSM"]]];
 document.getElementById('skills').innerHTML=sk.map(([a,b])=>`<div class="sk"><h3>${a}</h3><div class="chips">${b.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('');
 
+
+/* letras del título */
+const h1=document.getElementById('h1');
+if(!reduce){let i=0;const words=h1.textContent.split(' ');h1.setAttribute('aria-label',h1.textContent);h1.innerHTML=words.map(w=>`<span class="h1w" aria-hidden="true">${[...w].map(c=>`<span class="ch" style="--i:${i++}">${c}</span>`).join('')}</span>`).join(' ')}
+/* luz que sigue al mouse */
+const hb=document.getElementById('herobg');
+hb.addEventListener('pointermove',e=>{const r=hb.getBoundingClientRect();hb.style.setProperty('--mx',(e.clientX-r.left)+'px');hb.style.setProperty('--my',(e.clientY-r.top)+'px')});
+/* cinta de tecnologías */
+const tech=["Angular","ASP.NET Core","C#","SQL Server","Flutter","Firebase","TypeScript","Node.js","Docker","Tailwind CSS","Python","Windows Server","Redes Wi-Fi"];
+document.getElementById('track').innerHTML=[...tech,...tech].map(t=>`<span>${t}</span>`).join('');
+/* contadores */
+function countUp(el){const t=+el.dataset.n,dur=1400;let t0=null;const st=ts=>{if(!t0)t0=ts;const k=Math.min((ts-t0)/dur,1);el.textContent=Math.round(t*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
+/* inclinación 3D al pasar el mouse */
+document.querySelectorAll('.frame,.phones,.phone').forEach(f=>{f.classList.add('tilt');if(reduce)return;
+  f.addEventListener('pointermove',e=>{const r=f.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.setProperty('--ry',(x*6)+'deg');f.style.setProperty('--rx',(-y*6)+'deg')});
+  f.addEventListener('pointerleave',()=>{f.style.setProperty('--ry','0deg');f.style.setProperty('--rx','0deg')})});
+/* barra de progreso y parallax */
+const prog=document.getElementById('prog'),par=[...document.querySelectorAll('.p .media, .feat > div:first-child')];par.forEach(e=>e.classList.add('par'));let tick=false;
+function onScroll(){const h=document.documentElement;prog.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight)||0})`;
+  if(!reduce)par.forEach((f,i)=>{const r=f.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));f.style.setProperty('--py',(c*-14*(i%2?1:-1)).toFixed(1)+'px')});tick=false}
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+/* retrasos escalonados */
+document.querySelectorAll('.otros .rv,.stats .rv').forEach((e,i)=>e.style.setProperty('--d',(i%4)*.1+'s'));
+document.querySelectorAll('#wins li').forEach((e,i)=>e.style.setProperty('--i',i));
 /* animaciones al hacer scroll */
-const els=document.querySelectorAll('.rv');
-if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'))}
-else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});els.forEach(e=>io.observe(e))}
+const els=document.querySelectorAll('.rv,.tl');
+if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));document.querySelectorAll('b[data-n]').forEach(b=>b.textContent=b.dataset.n)}
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);const n=e.target.querySelector('b[data-n]');if(n)countUp(n)}}),{threshold:.12});els.forEach(e=>io.observe(e))}
 const links=[...document.querySelectorAll('#links a')];
 const nio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 ['proyectos','sobre-mi','experiencia','contacto'].forEach(id=>nio.observe(document.getElementById(id)));
