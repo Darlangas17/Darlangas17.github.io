@@ -4,246 +4,331 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Darlan Perdomo | Portafolio</title>
+<meta name="description" content="Darlan Perdomo: desarrollo web y móvil con Angular, .NET, Flutter y Firebase, y soporte de infraestructura TI en San Pedro Sula, Honduras.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE: sobrio y directo, como un CV bien diseñado.
-   IDEA: una ficha técnica: perfil fijo a la izquierda, el trabajo se desplaza a la derecha.
-   PICTURE: las capturas de cada proyecto, grandes, en marcos de navegador.
+/* VOICE: directo y técnico; los proyectos hablan primero, la persona después.
+   IDEA: un tablero de tickets que se resuelve solo, como el flujo de TicketFlow y del soporte diario.
+   PICTURE: tablero Abierto → En progreso → Resuelto con tarjetas que avanzan en vivo.
    COLOUR and TYPE: blanco y negro con un campo menta #b8f5d0; Space Grotesk 700 + Inter.
-   LAYOUT: barra lateral negra fija en escritorio; en celular se apila arriba. */
+   LAYOUT: portada con tablero, proyectos con galerías, y al final perfil, experiencia y contacto. */
 :root{color-scheme:light dark;
   --bg:light-dark(#ffffff,#0d0d0d);--ink:light-dark(#0a0a0a,#efefef);
   --soft:light-dark(#5b5b5b,#a3a3a3);--line:light-dark(#e6e6e6,#262626);
-  --mint:#b8f5d0;--card:light-dark(#f5f5f5,#161616)}
+  --mint:#b8f5d0;--card:light-dark(#f5f5f5,#161616);--ok:#11a85a}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1,h2,h3,h4{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
 a{color:inherit}
-a:focus-visible,button:focus-visible{outline:3px solid #11a85a;outline-offset:3px}
-.layout{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);min-height:100vh}
-/* sidebar */
-aside{background:#0a0a0a;color:#f2f2f2;position:sticky;top:0;height:100vh;padding:36px 32px;display:flex;flex-direction:column;gap:20px;overflow:auto}
-.avatar{width:84px;height:84px;border-radius:22px;background:var(--mint);color:#0a0a0a;display:grid;place-items:center;font:700 34px "Space Grotesk"}
-aside h1{font-size:44px;letter-spacing:-.02em}
-.role{color:var(--mint);font-weight:600;margin-top:6px}
-aside p{margin:0;color:#b5b5b5;font-size:15px}
-.menu{display:flex;flex-direction:column;gap:2px}
-.menu a{text-decoration:none;padding:10px 12px;border-radius:10px;color:#cfcfcf;font-size:15px;display:flex;justify-content:space-between}
-.menu a:hover,.menu a.on{background:#1d1d1d;color:#fff}
-.menu a.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);align-self:center}
-.meta{display:grid;gap:8px;font-size:14px;color:#b5b5b5;margin-top:auto}
-.meta a{color:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px}
-.btn.mint{background:var(--mint);color:#0a0a0a}
-.btn.ghost{border:1.5px solid #3a3a3a;color:#fff}
-.btns{display:flex;gap:10px;flex-wrap:wrap}
-/* main */
-main{padding:clamp(32px,5vw,72px) clamp(20px,5vw,72px);max-width:1000px;width:100%}
-section{padding-bottom:clamp(48px,7vw,88px)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ok);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(5vw,18px)}
+.band{padding:clamp(56px,8vw,104px) 0}
 .label{font-size:14px;font-weight:600;color:var(--soft);margin:0 0 10px}
-h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px}
-.intro{font-size:clamp(20px,2vw,26px);line-height:1.4;font-family:"Space Grotesk";font-weight:500;max-width:30ch;margin:0 0 20px}
-.lead{color:var(--soft);max-width:62ch;margin:0}
-/* experience */
-.job{border:1px solid var(--line);border-radius:22px;overflow:hidden}
-.jobhead{background:var(--mint);color:#0a0a0a;padding:26px 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end}
-.jobhead h3{font-size:26px}.jobhead span{font-weight:600}
-.jobhead small{display:block;font-size:15px;margin-top:4px}
-.jobbody{padding:26px 28px;display:grid;gap:22px}
-.jobbody>p{margin:0;color:var(--soft)}
-.duties{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px}
-.duty{background:var(--card);border-radius:14px;padding:14px 16px}
-.duty b{display:block;font-size:15px}.duty span{font-size:14px;color:var(--soft)}
-.wins h4{font:700 17px "Space Grotesk";margin:0 0 10px}
-.wins ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-.wins li{padding-left:28px;position:relative}
-.wins li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:#11a85a}
-.wins li::after{content:"";position:absolute;left:5px;top:9px;width:6px;height:3px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg)}
-.wins li strong{font-weight:600}
-.edu{margin-top:16px;border:1px solid var(--line);border-radius:22px;padding:24px 28px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.edu h3{font-size:22px}.edu p{margin:4px 0 0;color:var(--soft)}.edu span{color:var(--soft);font-weight:600}
+h2{font-size:clamp(32px,4.2vw,50px);margin-bottom:14px}
+.lead{color:var(--soft);max-width:60ch;margin:0}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:62px;flex-wrap:wrap}
+nav b{font:700 18px "Space Grotesk"}
+nav .links{display:flex;gap:2px;flex-wrap:wrap}
+nav .links a{text-decoration:none;font-size:14px;padding:10px 12px;border-radius:10px;color:var(--soft)}
+nav .links a:hover,nav .links a.on{color:var(--ink);background:var(--card)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px;border:1.5px solid var(--ink);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.mint{background:var(--mint);color:#0a0a0a;border-color:var(--mint)}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4vw,56px);align-items:center;padding-block:clamp(40px,6vw,80px)}
+.hero h1{font-size:clamp(38px,4.6vw,60px);letter-spacing:-.03em}
+.hero .who{font-weight:600;color:var(--soft);margin:0 0 14px}
+.hero p.big{font-size:clamp(18px,1.7vw,21px);max-width:36ch;margin:20px 0 26px}
+.hero small{display:block;color:var(--soft);font-size:15px;margin-top:22px;max-width:48ch}
+.field{background:var(--mint);border-radius:28px;padding:clamp(16px,2.4vw,28px);position:relative;overflow:hidden}
+.field::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#0a0a0a1f 1px,transparent 1px);background-size:20px 20px}
+.board{position:relative;background:#fff;color:#0a0a0a;border-radius:20px;box-shadow:0 30px 60px -24px #0a0a0a66;padding:16px}
+.bh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+.bh b{font:700 17px "Space Grotesk";display:flex;align-items:center;gap:8px}
+.bh b i{width:22px;height:22px;border-radius:7px;background:#0a0a0a;display:inline-block}
+.bh span{font-size:13px;color:#5b5b5b}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.col{background:#f4f4f4;border-radius:14px;padding:8px;min-height:250px}
+.col h4{font:600 12px Inter;color:#5b5b5b;margin:2px 4px 8px;display:flex;justify-content:space-between}
+.tk{background:#fff;border-radius:10px;padding:8px 9px;margin-bottom:6px;box-shadow:0 1px 0 #0000000f,0 4px 10px -6px #0003;font-size:12px;line-height:1.35;animation:pop .45s cubic-bezier(.2,.9,.3,1.3)}
+.tk em{font-style:normal;color:#8a8a8a;font-size:11px}
+.tk b{display:block;font-weight:600;margin:2px 0 6px}
+.tk .pr{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:99px}
+.p-alta{background:#ffe7c2;color:#8a4b00}.p-media{background:#e6e6e6;color:#333}.p-crit{background:#ffd6d6;color:#9a1010}
+.col.done .tk{background:#effcf4}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:none}}
+.bf{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:#5b5b5b;gap:10px}
+.bf strong{font:700 22px "Space Grotesk";color:#0a0a0a;margin-right:4px}
+.again{font:inherit;font-size:13px;border:0;background:#0a0a0a;color:#fff;border-radius:999px;padding:0 14px;min-height:36px;cursor:pointer}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
 /* projects */
-.proj{display:grid;gap:28px}
-.p{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:center}
-.p:nth-child(even) .media{order:2}
-.frame{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 24px 50px -28px #0006}
+.feat{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;align-items:start;margin-top:36px}
+.frame{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 26px 50px -30px #0007;cursor:zoom-in}
 .frame .top{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
 .frame .top i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.frame img{display:block;width:100%;height:auto}
-.empty{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:20px;color:var(--soft);font-size:14px;background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 60%,transparent) 14px 15px)}
-.empty b{display:block;color:var(--ink);font:700 18px "Space Grotesk";margin-bottom:4px}
-.p h3{font-size:24px;margin:8px 0 10px}
-.p p{margin:0;color:var(--soft)}
-.badge{display:inline-block;margin:0 6px 6px 0;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--mint);color:#0a0a0a}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.visit{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
-.soc a{color:var(--mint)}
-.edu+.edu{margin-top:12px}
-.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
-.course{background:var(--card);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
-.course span{font-size:13px;font-weight:600;color:#0a6b3a;background:var(--mint);align-self:flex-start;padding:2px 8px;border-radius:999px;margin-bottom:4px}
-.course b{font-size:15px;font-weight:600}.course small{font-size:14px;color:var(--soft)}
-.jobs{margin-top:12px;display:grid;gap:12px}
-.jb{border:1px solid var(--line);border-radius:22px;padding:24px 28px}
-.jbt{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
-.jbt h3{font-size:22px}.jbt small{display:block;color:var(--soft);font-size:15px;margin-top:4px}.jbt span{color:var(--soft);font-weight:600;white-space:nowrap}
-.jb p{margin:0;color:var(--soft);max-width:70ch}
-.badge.team{background:var(--card);color:var(--ink);border:1px solid var(--line)}
-.thumbs{display:flex;gap:8px;margin-top:10px}
-.thumbs button{flex:1;padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;background:none;min-height:44px}
-.thumbs button.on{border-color:#11a85a}
-.thumbs img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top}
-.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:var(--mint);border-radius:16px;padding:18px}
-.phones img{width:100%;border-radius:14px;box-shadow:0 14px 30px -14px #0007;display:block}
-.sub{font-size:24px;margin:44px 0 16px}
-.otros{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:14px}
-.otro{border:1px solid var(--line);border-radius:18px;padding:20px 22px}
-.otro h3{font-size:20px;margin:6px 0 8px}.otro p{margin:0;color:var(--soft);font-size:15px}
+.frame img{display:block;width:100%;height:auto;transition:opacity .25s}
+.thumbs{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding-bottom:4px}
+.thumbs button{flex:0 0 auto;width:96px;padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;background:none}
+.thumbs button.on{border-color:var(--ok)}
+.thumbs img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.badge{display:inline-block;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--mint);color:#0a0a0a;margin:0 6px 6px 0}
+.ftxt h3{font-size:clamp(26px,3vw,36px);margin:6px 0 12px}
+.ftxt p{color:var(--soft);margin:0 0 12px}
+.ftxt ul{margin:0 0 14px;padding-left:18px;color:var(--soft)}.ftxt li{margin-bottom:4px}
+.phone{width:160px;border-radius:22px;border:6px solid #0a0a0a;overflow:hidden;box-shadow:0 20px 40px -20px #0008;margin-top:16px;cursor:zoom-in}
+.phone img{display:block;width:100%}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .tags span{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px}
-.sk{border-top:2px solid var(--ink);padding-top:12px}
-.sk h3{font-size:18px;margin-bottom:8px}
+.visit{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;margin-right:16px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+.proj{display:grid;gap:56px;margin-top:64px}
+.p{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center}
+.p:nth-child(even) .media{order:2}
+.p h3{font-size:26px;margin:8px 0 10px}.p p{margin:0;color:var(--soft)}
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;background:var(--mint);border-radius:18px;padding:18px}
+.phones img{width:100%;border-radius:14px;box-shadow:0 14px 30px -14px #0007;display:block;cursor:zoom-in;transition:transform .3s}
+.phones img:hover{transform:translateY(-6px) rotate(-1deg)}
+.sub{font-size:24px;margin:72px 0 16px}
+.otros{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px}
+.otro{border:1px solid var(--line);border-radius:18px;padding:20px 22px;transition:transform .25s,border-color .25s}
+.otro:hover{transform:translateY(-4px);border-color:var(--ink)}
+.otro h3{font-size:20px;margin:6px 0 8px}.otro p{margin:0;color:var(--soft);font-size:15px}
+/* about */
+.about{background:var(--card)}
+.aboutgrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.avatar{width:72px;height:72px;border-radius:20px;background:#0a0a0a;color:var(--mint);display:grid;place-items:center;font:700 28px "Space Grotesk";margin-bottom:18px}
+.intro{font:500 clamp(20px,2vw,25px)/1.4 "Space Grotesk";margin:0 0 16px}
+.facts{display:grid;gap:8px;margin-top:20px;font-size:15px;color:var(--soft)}
+.facts b{color:var(--ink);font-weight:600}
+.job{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg)}
+.jobhead{background:var(--mint);color:#0a0a0a;padding:22px 24px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:end}
+.jobhead h3{font-size:24px}.jobhead small{display:block;font-size:15px;margin-top:4px}.jobhead span{font-weight:600;font-size:14px}
+.jobbody{padding:22px 24px;display:grid;gap:18px}
+.duties{display:flex;flex-wrap:wrap;gap:6px}
+.duties span{font-size:14px;background:var(--card);padding:6px 12px;border-radius:999px}
+.wins{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.wins li{padding-left:28px;position:relative;color:var(--soft)}
+.wins li strong{color:var(--ink);font-weight:600}
+.wins li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--ok)}
+.wins li::after{content:"";position:absolute;left:5px;top:9px;width:6px;height:3px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg)}
+.jobs{display:grid;gap:12px;margin-top:12px}
+.jb{border:1px solid var(--line);border-radius:18px;padding:18px 22px;background:var(--bg)}
+.jbt{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.jbt h3{font-size:19px}.jbt small{display:block;color:var(--soft);font-size:14px;margin-top:2px}.jbt span{color:var(--soft);font-weight:600;font-size:14px;white-space:nowrap}
+.jb p{margin:0;color:var(--soft);font-size:15px}
+.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px);margin-top:clamp(40px,6vw,64px)}
+.edu{border-top:2px solid var(--ink);padding:14px 0 16px}
+.edu h3{font-size:19px}.edu p{margin:4px 0 0;color:var(--soft);font-size:15px}
+.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:10px}
+.course{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.course span{font-size:12px;font-weight:600;color:#0a6b3a;background:var(--mint);padding:2px 8px;border-radius:999px}
+.course b{display:block;font-size:14px;font-weight:600;margin-top:6px}.course small{font-size:13px;color:var(--soft)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;margin-top:clamp(40px,6vw,64px)}
+.sk h3{font-size:17px;margin-bottom:8px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips span{font-size:14px;background:var(--card);padding:5px 10px;border-radius:8px}
+.chips span{font-size:14px;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:8px}
 /* contact */
-.cta{background:#0a0a0a;color:#fff;border-radius:24px;padding:clamp(28px,4vw,48px)}
-.cta h2{color:#fff}.cta p{color:#b5b5b5;margin:0 0 22px;max-width:50ch}
-footer{color:var(--soft);font-size:13px;padding-top:28px}
-@media(max-width:960px){
-  .layout{grid-template-columns:minmax(0,1fr)}
-  aside{position:static;height:auto;padding:36px max(5vw,20px)}
-  .menu{flex-direction:row;flex-wrap:wrap}.menu a.on::after{display:none}
-  .meta{margin-top:0}
-  .p{grid-template-columns:minmax(0,1fr)}.p:nth-child(even) .media{order:0}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.cta{background:#0a0a0a;color:#fff;border-radius:28px;padding:clamp(32px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:end}
+.cta h2{color:#fff}.cta p{color:#b5b5b5;margin:0}
+.cta .btn{border-color:#3a3a3a;color:#fff}.cta .btn.mint{color:#0a0a0a;border-color:var(--mint)}
+.cta .meta{display:grid;gap:6px;color:#b5b5b5;font-size:15px;margin-top:18px}
+.cta .meta a{color:var(--mint)}
+footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:#000c;display:none;align-items:center;justify-content:center;padding:4vw}
+.lb.open{display:flex;animation:fade .25s}
+.lb img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 30px 80px #000}
+.lb button{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;font-size:22px;cursor:pointer}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media(max-width:900px){.hero,.feat,.p,.aboutgrid,.cta,.cols2{grid-template-columns:minmax(0,1fr)}.p:nth-child(even) .media{order:0}}
+@media(max-width:600px){nav .links{display:none}.col{min-height:210px}.tk b{font-size:11.5px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.tk{animation:none}*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="layout">
-<aside>
-  <div class="avatar" aria-hidden="true">DP</div>
-  <div><h1>Darlan Perdomo</h1><div class="role">Técnico de Sistemas · Desarrollador web</div></div>
-  <p>Soporte de infraestructura TI y desarrollo de sistemas web desde San Pedro Sula, Honduras.</p>
-  <nav class="menu" id="menu">
-    <a href="#perfil">Perfil</a><a href="#experiencia">Experiencia</a><a href="#proyectos">Proyectos</a><a href="#habilidades">Habilidades</a><a href="#contacto">Contacto</a>
-  </nav>
-  <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">WhatsApp</a><a class="btn ghost" href="mailto:darlanpj17@gmail.com">Correo</a></div>
-  <div class="meta"><a href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a href="https://wa.me/50498812238">+504 9881-2238</a><span>San Pedro Sula, Honduras</span><span>Español nativo · Inglés intermedio</span>
-  <span class="soc"><a href="https://github.com/Darlangas17">GitHub</a> · <a href="https://www.linkedin.com/in/darlan-perdomo-4b889335a/">LinkedIn</a> · <a href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></span></div>
-</aside>
+<nav><div class="wrap"><b>Darlan Perdomo</b>
+<div class="links" id="links"><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a></div></div></nav>
 
-<main>
-  <section id="perfil">
-    <p class="label">Perfil</p>
-    <p class="intro">Me aseguro de que la tecnología funcione todos los días y construyo software que la haga más fácil de manejar.</p>
-    <p class="lead">Estudiante de Ingeniería en Sistemas y Técnico de Sistemas en Smart Fit Honduras. Me interesan el desarrollo web, las redes y el soporte de sistemas. He llevado proyectos de software para un negocio real desde el diseño hasta su puesta en producción.</p>
-  </section>
-
-  <section id="experiencia">
-    <p class="label">Experiencia</p>
-    <h2>Mi experiencia</h2>
-    <article class="job">
-      <div class="jobhead"><div><h3>Técnico de Sistemas</h3><small>Smart Fit · San Pedro Sula</small></div><span>Octubre 2026 a hoy · Tiempo completo</span></div>
-      <div class="jobbody">
-        <p>Responsable del funcionamiento tecnológico de tres sucursales: Galerías, Ágora y Town Center.</p>
-        <div class="duties" id="duties"></div>
-        <div class="wins"><h4>Lo que he aportado</h4><ul id="wins"></ul></div>
+<header class="wrap hero">
+  <div class="rv">
+    <p class="who">Darlan Perdomo · San Pedro Sula, Honduras</p>
+    <h1>Construyo sistemas que resuelven problemas reales</h1>
+    <p class="big">Desarrollo aplicaciones web y móviles con Angular, .NET, Flutter y Firebase, y doy soporte a la tecnología de empresas con varias sucursales.</p>
+    <div class="btns"><a class="btn fill" href="#proyectos">Ver mis proyectos</a><a class="btn" href="https://wa.me/50498812238">Escribirme por WhatsApp</a></div>
+    <small>Estudiante de Ingeniería en Sistemas en la UNAH y Técnico de Sistemas en Smart Fit Honduras.</small>
+  </div>
+  <div class="field rv" aria-label="Animación de un tablero de tickets de soporte">
+    <div class="board">
+      <div class="bh"><b><i></i>Tickets de soporte</b><span id="st">Atendiendo…</span></div>
+      <div class="cols">
+        <div class="col"><h4>Abierto <span id="c0">0</span></h4><div id="k0"></div></div>
+        <div class="col"><h4>En progreso <span id="c1">0</span></h4><div id="k1"></div></div>
+        <div class="col done"><h4>Resuelto <span id="c2">0</span></h4><div id="k2"></div></div>
       </div>
-    </article>
-    <div class="jobs" id="jobs"></div>
-    <p class="label" style="margin-top:36px">Formación</p>
-    <div class="edu"><div><h3>Ingeniería en Sistemas</h3><p>Universidad Nacional Autónoma de Honduras (UNAH Campus Cortés)</p></div><span>2022 a hoy</span></div>
-    <div class="edu"><div><h3>Bachillerato Técnico Profesional en Electrónica</h3><p>Centro Técnico Hondureño Alemán (CTHA)</p></div><span>2016 a 2021</span></div>
-    <p class="label" style="margin-top:36px">Cursos</p>
-    <div class="courses" id="courses"></div>
-  </section>
-
-  <section id="proyectos">
-    <p class="label">Proyectos</p>
-    <h2>Lo que he desarrollado</h2>
-    <div class="proj" id="proj"></div>
-    <h3 class="sub">Otros trabajos</h3>
-    <div class="otros" id="otros"></div>
-  </section>
-
-  <section id="habilidades">
-    <p class="label">Habilidades</p>
-    <h2>Con qué trabajo</h2>
-    <div class="skills" id="skills"></div>
-  </section>
-
-  <section id="contacto" style="padding-bottom:0">
-    <div class="cta">
-      <h2>Hablemos de tu proyecto</h2>
-      <p>Disponible para desarrollo web freelance, automatización y soporte de infraestructura.</p>
-      <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">Escribirme por WhatsApp</a><a class="btn ghost" href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a class="btn ghost" href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></div>
+      <div class="bf"><span><strong id="cnt">0</strong>de 5 tickets resueltos</span><button class="again" id="again">Repetir</button></div>
     </div>
-    <footer>© 2026 Darlan Perdomo</footer>
-  </section>
-</main>
-</div>
+  </div>
+</header>
+
+<section class="band" id="proyectos" style="padding-top:clamp(24px,4vw,48px)"><div class="wrap">
+  <div class="rv"><p class="label">Proyectos</p><h2>Lo que he construido</h2><p class="lead">Sistemas en producción para clientes, apps móviles y mi proyecto más completo: TicketFlow. Toca cualquier imagen para verla más grande.</p></div>
+
+  <article class="feat rv">
+    <div>
+      <div class="frame" id="tfFrame"><div class="top"><i></i><i></i><i></i></div><img id="tfMain" src="tf/dashboard.jpg" alt="Dashboard de TicketFlow"></div>
+      <div class="thumbs" id="tfThumbs"></div>
+    </div>
+    <div class="ftxt">
+      <span class="badge">Proyecto completo</span><span class="badge">Full stack</span>
+      <h3>TicketFlow, sistema de tickets de soporte TI</h3>
+      <p>Para una empresa con varias sucursales: los empleados reportan problemas, los técnicos los atienden con un flujo definido y los administradores gestionan usuarios, sucursales y categorías.</p>
+      <ul>
+        <li>Dashboard con métricas por estado, prioridad, sucursal y categoría.</li>
+        <li>Roles de administrador, técnico y solicitante con autenticación JWT.</li>
+        <li>Comentarios, historial de cambios, modo oscuro y diseño para celular.</li>
+        <li>Pruebas automatizadas, Docker y CI con GitHub Actions.</li>
+      </ul>
+      <div class="tags"><span>.NET 8 / ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>Angular 21</span><span>Angular Material</span><span>Docker</span><span>xUnit</span></div>
+      <a class="visit" href="https://github.com/Darlangas17/ticketflow">Ver código en GitHub →</a>
+      <div class="phone" id="tfPhone"><img src="tf/mobile-tickets.jpg" alt="TicketFlow en celular" loading="lazy"></div>
+    </div>
+  </article>
+
+  <div class="proj" id="proj"></div>
+
+  <h3 class="sub rv">Otros trabajos</h3>
+  <div class="otros" id="otros"></div>
+</div></section>
+
+<section class="band about" id="sobre-mi"><div class="wrap">
+  <div class="aboutgrid">
+    <div class="rv">
+      <div class="avatar" aria-hidden="true">DP</div>
+      <p class="label">Sobre mí</p>
+      <p class="intro">Me aseguro de que la tecnología funcione todos los días y construyo software que la haga más fácil de manejar.</p>
+      <p class="lead">Estudiante de Ingeniería en Sistemas con experiencia desarrollando aplicaciones web y móviles, incluidos sistemas en producción para una empresa de EE. UU., y brindando soporte técnico de infraestructura en Smart Fit Honduras. Soy proactivo, aprendo rápido y me gusta quedarme a resolver hasta el final.</p>
+      <div class="facts"><span><b>Ubicación:</b> San Pedro Sula, Honduras</span><span><b>Idiomas:</b> español nativo, inglés intermedio</span><span><b>Busco:</b> práctica o puesto en desarrollo de software y soporte</span></div>
+    </div>
+    <div id="experiencia" class="rv">
+      <p class="label">Experiencia</p>
+      <article class="job">
+        <div class="jobhead"><div><h3>Técnico de Sistemas</h3><small>Smart Fit Honduras · San Pedro Sula</small></div><span>Oct. 2026 a hoy</span></div>
+        <div class="jobbody">
+          <div class="duties" id="duties"></div>
+          <ul class="wins" id="wins"></ul>
+        </div>
+      </article>
+      <div class="jobs" id="jobs"></div>
+    </div>
+  </div>
+
+  <div class="cols2">
+    <div class="rv"><p class="label">Formación</p>
+      <div class="edu"><h3>Ingeniería en Sistemas</h3><p>UNAH Campus Cortés · 2022 a hoy</p></div>
+      <div class="edu"><h3>Bachillerato Técnico Profesional en Electrónica</h3><p>Centro Técnico Hondureño Alemán (CTHA) · 2016 a 2021</p></div>
+    </div>
+    <div class="rv"><p class="label">Cursos</p><div class="courses" id="courses"></div></div>
+  </div>
+
+  <div class="skills rv" id="skills"></div>
+</div></section>
+
+<section class="band" id="contacto"><div class="wrap">
+  <div class="cta rv">
+    <div><h2>¿Tienes un sistema en mente?</h2><p>Disponible para prácticas, empleo y proyectos de desarrollo web, móvil y soporte TI.</p>
+      <div class="meta"><a href="mailto:darlanpj17@gmail.com">darlanpj17@gmail.com</a><a href="https://wa.me/50498812238">+504 9881-2238</a></div></div>
+    <div class="btns"><a class="btn mint" href="https://wa.me/50498812238">WhatsApp</a><a class="btn" href="mailto:darlanpj17@gmail.com">Correo</a><a class="btn" href="https://github.com/Darlangas17">GitHub</a><a class="btn" href="https://www.linkedin.com/in/darlan-perdomo-4b889335a/">LinkedIn</a><a class="btn" href="https://www.upwork.com/freelancers/~0198630a7451a2da4a">Upwork</a></div>
+  </div>
+  <footer>© 2026 Darlan Perdomo · San Pedro Sula, Honduras</footer>
+</div></section>
+
+<div class="lb" id="lb" role="dialog" aria-label="Imagen ampliada"><button id="lbX" aria-label="Cerrar">×</button><img id="lbImg" alt=""></div>
 
 <script>
 {
-const duties=[["Servidores","Equipos de cada unidad en línea"],["Control de acceso","Torniquetes de socios"],["Redes Wi-Fi","Cobertura en salas"],["Audio","Música y anuncios por horario"],["Cámaras","DVR y grabación"],["Climatización","Aires acondicionados"]];
-const courses=[
- ["Desarrollo web","HTML, CSS, JavaScript y Node.js","Codédex · finalizado"],
- ["Jira","Jira Fundamentals","Atlassian University"],
- ["Soporte con tickets","Jira Service Management Fundamentals","Atlassian University"],
- ["Angular","Tutorial oficial “Learn Angular”","angular.dev"],
- ["Firebase","Codelabs oficiales de Firebase","Google Firebase"],
- ["Flutter","Ruta oficial de aprendizaje","flutter.dev"],
- ["Flutter","Curso de Flutter","Coddy"],
- ["Tailwind CSS","Curso de Tailwind en español (David Ruiz)","freeCodeCamp"],
- ["SQLite","SQLite Course","Flavio Copes"],
- ["SAP","Learning journey introductorio","SAP Learning"],
-];
-document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
-const jobs=[
- ["Desarrollador de software freelance","Desarrollo web y móvil","Por proyecto","Panel administrativo y sitio web para JTX Electrical con Angular, Tailwind CSS y Firebase/Firestore, ambos en producción; sistema de gestión para la empresa de paquetería Premium Logistics Cargo; y Pumarket, app móvil para emprendedores de la UNAH."],
- ["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, información sobre tarifas y plazos de entrega, y procesamiento de reembolsos con atención personalizada."],
- ["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."],
-];
-document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
-document.getElementById('duties').innerHTML=duties.map(([a,b])=>`<div class="duty"><b>${a}</b><span>${b}</span></div>`).join('');
-const wins=[
- ["Diagnóstico de cobertura Wi-Fi","en las tres sucursales, con propuesta de equipos y presupuesto, e instalación de repetidores en Galerías."],
- ["Administración y soporte de AppScheduler,","el servicio de Windows en PowerShell y NSSM que controla la música ambiental: ajuste de horarios y corrección de fallas."],
- ["Manual de diagnóstico y corrección de fallas","y checklist de validación de sistemas por sucursal."],
- ["Propuesta de plan de contingencia","para mantener el control de acceso y la operación de las sucursales ante una caída del sistema (pendiente de aprobación)."],
-];
-document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</strong> ${b}</li>`).join('');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* tablero */
+const seed=[["#9","El ERP se cierra al exportar","p-alta","Alta"],["#26","Outlook no sincroniza","p-crit","Crítica"],["#15","Acceso a carpeta contable","p-media","Media"],["#18","Escáner no envía correos","p-crit","Crítica"],["#25","Teclado no responde","p-alta","Alta"]];
+let cols,timer;
+const card=t=>`<div class="tk"><em>${t[0]}</em><b>${t[1]}</b><span class="pr ${t[2]}">${t[3]}</span></div>`;
+function draw(){cols.forEach((c,i)=>{document.getElementById('k'+i).innerHTML=c.slice(0,4).map(card).join('');document.getElementById('c'+i).textContent=c.length});document.getElementById('cnt').textContent=cols[2].length}
+function step(){
+  if(cols[1].length){cols[2].unshift(cols[1].shift())}
+  else if(cols[0].length){cols[1].unshift(cols[0].shift())}
+  if(cols[0].length&&cols[1].length===0){cols[1].unshift(cols[0].shift())}
+  draw();
+  if(cols[2].length===seed.length){clearInterval(timer);document.getElementById('st').textContent='Todo resuelto';setTimeout(()=>{if(cols[2].length===seed.length)start()},4000)}
+}
+function start(){clearInterval(timer);cols=[seed.slice(),[],[]];document.getElementById('st').textContent='Atendiendo…';draw();
+  if(reduce){cols=[[],[],seed.slice()];draw();document.getElementById('st').textContent='Todo resuelto';return}
+  timer=setInterval(step,1100)}
+document.getElementById('again').addEventListener('click',start);
+start();
 
-/* Para poner una captura: guarda la imagen junto a este archivo y escribe su nombre en img, por ejemplo img:"jtx-admin.png" */
+/* lightbox */
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+function openLb(src,alt){lbImg.src=src;lbImg.alt=alt||'';lb.classList.add('open')}
+function closeLb(){lb.classList.remove('open')}
+lb.addEventListener('click',e=>{if(e.target!==lbImg)closeLb()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+/* TicketFlow galería */
+const tf=[["dashboard.jpg","Dashboard"],["ticket-list.jpg","Lista de tickets con filtros"],["ticket-detail.jpg","Detalle del ticket"],["admin-users.jpg","Administración de usuarios"],["dashboard-dark.jpg","Dashboard en modo oscuro"],["ticket-detail-dark.jpg","Detalle en modo oscuro"],["login.jpg","Inicio de sesión"]];
+const tfMain=document.getElementById('tfMain'),tfThumbs=document.getElementById('tfThumbs');
+tfThumbs.innerHTML=tf.map(([f,a],k)=>`<button class="${k?'':'on'}" data-s="tf/${f}" data-a="${a}" aria-label="${a}"><img src="tf/${f}" alt="" loading="lazy"></button>`).join('');
+let tfi=0,tfAuto;
+function showTf(k){tfi=k;const b=tfThumbs.children[k];tfMain.style.opacity=.3;setTimeout(()=>{tfMain.src=b.dataset.s;tfMain.alt=b.dataset.a;tfMain.style.opacity=1},180);[...tfThumbs.children].forEach(x=>x.classList.toggle('on',x===b))}
+tfThumbs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;clearInterval(tfAuto);showTf([...tfThumbs.children].indexOf(b))});
+if(!reduce)tfAuto=setInterval(()=>showTf((tfi+1)%tf.length),3500);
+document.getElementById('tfFrame').addEventListener('click',()=>openLb(tfMain.src,tfMain.alt));
+document.getElementById('tfPhone').addEventListener('click',()=>openLb('tf/mobile-tickets.jpg','TicketFlow en celular'));
+
+/* proyectos */
 const proj=[
- {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle. Incluye módulos CRUD con borrado lógico, notificaciones y confeti al completar registros.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
+ {t:"Backoffice de JTX Electrical",b:"Cliente real · En producción",imgs:["backoffice-1.jpg","backoffice-0.jpg","backoffice-2.jpg"],url:"https://jtxelectricaladmin.web.app",d:"Panel de administración para una empresa eléctrica de Austin, Texas: calendario de citas, clientes con varios proyectos, precios, casas y un mapa cuyos pines se generan solos a partir de la ubicación de cada proyecto, con vista de calle.",tags:["Angular 20","Tailwind CSS","Firebase / Firestore","Google Maps"]},
  {t:"Sitio web de JTX Electrical",b:"Cliente real · En producción",imgs:["jtxweb-0.jpg","jtxweb-1.jpg"],url:"https://jtxweb-1302f.web.app",d:"Página institucional de la empresa con sus servicios, promesa de calidad, botón para reservar y WhatsApp flotante para pedir cotizaciones.",tags:["Angular 21","Tailwind CSS"]},
  {t:"Pumarket, app para emprendedores de la UNAH",b:"App móvil",phone:true,imgs:["pumarket-0.jpg","pumarket-1.jpg","pumarket-2.jpg"],d:"Marketplace móvil donde estudiantes de la UNAH publican y venden sus productos y servicios, con buscador, categorías, registro e inicio de sesión, y una bienvenida con contacto por Facebook y WhatsApp.",tags:["App móvil","Marketplace"]},
 ];
-const otros=[
- ["Premium Logistics Cargo","Cliente real","Sistema integral de gestión para una empresa de paquetería."],
- ["TicketFlow","En construcción","Sistema de tickets de soporte de TI con prioridades, asignación a técnicos y seguimiento de estado. C# / .NET, SQL Server y Angular."],
- ["Monitor de paciente UCI con IoT","Proyecto académico","Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab."],
-];
-document.getElementById('otros').innerHTML=otros.map(([a,b,c])=>`<div class="otro"><span class="badge">${b}</span><h3>${a}</h3><p>${c}</p></div>`).join('');
-const media=(p,i)=>{
- if(!p.imgs.length)return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><div class="empty"><div><b>Captura pendiente</b>Aquí va una imagen del proyecto</div></div></div>`;
- if(p.phone)return `<div class="phones">${p.imgs.map(s=>`<img src="${s}" alt="Pantalla de ${p.t}" loading="lazy">`).join('')}</div>`;
- return `<div class="frame"><div class="top"><i></i><i></i><i></i></div><img id="m${i}" src="${p.imgs[0]}" alt="Captura de ${p.t}" loading="lazy"></div>${p.imgs.length>1?`<div class="thumbs">${p.imgs.map((s,k)=>`<button data-m="m${i}" data-s="${s}" class="${k?'':'on'}" aria-label="Ver captura ${k+1}"><img src="${s}" alt=""></button>`).join('')}</div>`:''}`;
-};
-document.getElementById('proj').innerHTML=proj.map((p,i)=>`<article class="p"><div class="media">${media(p,i)}</div><div><span class="badge">${p.b}</span><h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.url?`<a class="visit" href="${p.url}">Ver sitio en vivo →</a>`:''}</div></article>`).join('');
-document.getElementById('proj').addEventListener('click',e=>{const b=e.target.closest('button[data-m]');if(!b)return;document.getElementById(b.dataset.m).src=b.dataset.s;[...b.parentNode.children].forEach(x=>x.classList.toggle('on',x===b))});
+const media=(p,i)=>p.phone
+ ?`<div class="phones">${p.imgs.map(s=>`<img src="${s}" alt="Pantalla de ${p.t}" loading="lazy" data-zoom>`).join('')}</div>`
+ :`<div class="frame" data-zoomframe="m${i}"><div class="top"><i></i><i></i><i></i></div><img id="m${i}" src="${p.imgs[0]}" alt="Captura de ${p.t}" loading="lazy"></div>${p.imgs.length>1?`<div class="thumbs">${p.imgs.map((s,k)=>`<button data-m="m${i}" data-s="${s}" class="${k?'':'on'}" aria-label="Ver captura ${k+1}"><img src="${s}" alt=""></button>`).join('')}</div>`:''}`;
+const projEl=document.getElementById('proj');
+projEl.innerHTML=proj.map((p,i)=>`<article class="p rv"><div class="media">${media(p,i)}</div><div><span class="badge">${p.b}</span><h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.url?`<a class="visit" href="${p.url}">Ver sitio en vivo →</a>`:''}</div></article>`).join('');
+projEl.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-m]');
+  if(b){document.getElementById(b.dataset.m).src=b.dataset.s;[...b.parentNode.children].forEach(x=>x.classList.toggle('on',x===b));return}
+  const z=e.target.closest('[data-zoom]');if(z){openLb(z.src,z.alt);return}
+  const f=e.target.closest('[data-zoomframe]');if(f){const im=document.getElementById(f.dataset.zoomframe);openLb(im.src,im.alt)}
+});
+const otros=[["Premium Logistics Cargo","Cliente real","Sistema integral de gestión para una empresa de paquetería."],["Monitor de paciente UCI con IoT","Proyecto académico","Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab."]];
+document.getElementById('otros').innerHTML=otros.map(([a,b,c])=>`<div class="otro rv"><span class="badge">${b}</span><h3>${a}</h3><p>${c}</p></div>`).join('');
 
-const sk=[["Lenguajes",["C++","Java","C#","Python","JavaScript","TypeScript"]],["Frontend",["Angular","Flutter","Tailwind CSS","HTML","CSS"]],["Backend y datos",["Firebase / Firestore","Node.js","SQL Server","MySQL","SQLite"]],["Redes y sistemas",["Wi-Fi","Windows Server","Linux","PowerShell","Jira","SAP","MS Office"]],["IoT y herramientas",["Arduino","Wokwi","ThingSpeak","Git","GitHub"]]];
+/* sobre mí */
+document.getElementById('duties').innerHTML=["Servidores","Control de acceso","Redes Wi-Fi","Audio","Cámaras","Climatización"].map(x=>`<span>${x}</span>`).join('');
+const wins=[["Diagnóstico de cobertura Wi-Fi","en las tres sucursales, con propuesta de equipos y presupuesto, e instalación de repetidores en Galerías."],["Administración y soporte de AppScheduler,","el servicio de Windows en PowerShell y NSSM que controla la música ambiental: ajuste de horarios y corrección de fallas."],["Manual de diagnóstico y corrección de fallas","y checklist de validación de sistemas por sucursal."],["Propuesta de plan de contingencia","para mantener el control de acceso y la operación ante una caída del sistema (pendiente de aprobación)."]];
+document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</strong> ${b}</li>`).join('');
+const jobs=[["Desarrollador de software freelance","Desarrollo web y móvil","Por proyecto","Backoffice y sitio web para JTX Electrical, sistema de gestión para Premium Logistics Cargo y la app Pumarket."],["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, tarifas y plazos de entrega, y procesamiento de reembolsos."],["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."]];
+document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
+const courses=[["Desarrollo web","HTML, CSS, JavaScript y Node.js","Codédex"],["Jira","Jira Fundamentals","Atlassian University"],["Soporte con tickets","Jira Service Management Fundamentals","Atlassian University"],["Angular","Tutorial oficial “Learn Angular”","angular.dev"],["Firebase","Codelabs oficiales","Google Firebase"],["Flutter","Ruta oficial de aprendizaje","flutter.dev"],["Flutter","Curso de Flutter","Coddy"],["Tailwind CSS","Curso en español (David Ruiz)","freeCodeCamp"],["SQLite","SQLite Course","Flavio Copes"],["SAP","Learning journey introductorio","SAP Learning"]];
+document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
+const sk=[["Lenguajes",["C#","TypeScript","JavaScript","Python","Java","C++"]],["Frontend",["Angular","Flutter","Tailwind CSS","Angular Material","HTML","CSS"]],["Backend y datos",["ASP.NET Core","EF Core","Node.js","Firebase","SQL Server","MySQL","SQLite"]],["DevOps y herramientas",["Docker","GitHub Actions","Git","Jira","SAP"]],["Infraestructura",["Windows Server","Linux","Redes Wi-Fi","PowerShell","NSSM"]]];
 document.getElementById('skills').innerHTML=sk.map(([a,b])=>`<div class="sk"><h3>${a}</h3><div class="chips">${b.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('');
 
-const links=[...document.querySelectorAll('#menu a')];
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-40% 0px -55% 0px'});
-document.querySelectorAll('main section').forEach(s=>io.observe(s));
+/* animaciones al hacer scroll */
+const els=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'))}
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});els.forEach(e=>io.observe(e))}
+const links=[...document.querySelectorAll('#links a')];
+const nio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['proyectos','sobre-mi','experiencia','contacto'].forEach(id=>nio.observe(document.getElementById(id)));
 }
 </script>
 </body>
