@@ -229,6 +229,41 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 :root[data-theme=dark] .herobg #role{background-image:linear-gradient(90deg,#b8f5d0,#2ee57d,#b8f5d0)}
 :root:not([data-theme=dark]) .caret{background:#11a85a}
 .marq{background:light-dark(#06110b,#000)}
+
+/* Premium Logistics */
+.plc{margin-top:28px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;align-items:center;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);background:linear-gradient(120deg,var(--card),transparent);position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.plc:hover{border-color:var(--ok);transform:translateY(-3px)}
+.pbadge{display:inline-block;font:600 12.5px Inter;background:var(--mint);color:var(--night);padding:3px 10px;border-radius:99px}
+.plc h3{font-size:clamp(24px,2.6vw,32px);margin:10px 0 8px}
+.plc p{margin:0;color:var(--soft)}
+.route{position:relative;color:var(--ink)}
+.route svg{width:100%;height:auto;display:block;overflow:visible}
+.rdone{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 6s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:1}80%,100%{stroke-dashoffset:0}}
+.stop circle{fill:var(--bg);stroke:var(--line);stroke-width:3;transition:fill .3s}
+.stop text{font:600 12px Inter;fill:var(--soft);text-anchor:middle}
+.stop{animation:stopon 6s infinite}
+.s1{animation-delay:0s}.s2{animation-delay:1.3s}.s3{animation-delay:2.9s}.s4{animation-delay:4.6s}
+@keyframes stopon{0%,4%{--x:0}5%,95%{--x:1}}
+.s1 circle,.s2 circle,.s3 circle,.s4 circle{animation:dotlit 6s infinite;animation-delay:inherit}
+@keyframes dotlit{0%,3%{fill:var(--bg);stroke:var(--line)}6%,92%{fill:#2ee57d;stroke:#11a85a}100%{fill:var(--bg);stroke:var(--line)}}
+.truck{offset-path:path("M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70");offset-rotate:auto;animation:drive 6s ease-in-out infinite}
+.truck rect,.truck circle{fill:var(--ink)}.truck rect:first-child{fill:#11a85a}
+@keyframes drive{0%{offset-distance:0%}80%,100%{offset-distance:100%}}
+.pk{position:absolute;right:4%;top:0;font:600 12px Inter;background:var(--night);color:var(--mint);padding:4px 10px;border-radius:99px;animation:bob 4s ease-in-out infinite}
+@media(max-width:800px){.plc{grid-template-columns:minmax(0,1fr)}}
+/* línea de tiempo y logros mejorados */
+.tl{padding-left:34px;margin-top:14px;gap:12px}
+.tl::before{left:11px;top:30px;bottom:30px;width:3px;border-radius:3px;background:linear-gradient(var(--glow),var(--ok) 60%,color-mix(in srgb,var(--ok) 25%,transparent))}
+.jb{transition:transform .3s,border-color .3s,box-shadow .3s}
+.jb:hover{transform:translateX(4px);border-color:var(--ok);box-shadow:0 12px 30px -18px #11a85a99}
+.jb::before{left:-30px;top:50%;width:16px;height:16px;margin-top:-8px;background:var(--ok);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--ok),0 0 14px #2ee57d88}
+.tl .jb:first-child::after{content:"";position:absolute;left:-30px;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;animation:ping 2s ease-out infinite;pointer-events:none}
+.wins{gap:8px;padding:16px}
+.wins li{padding:10px 12px 10px 46px;border-radius:12px;background:var(--card);transition:background .25s,transform .25s}
+.wins li:hover{background:color-mix(in srgb,var(--mint) 45%,var(--card));transform:translateX(3px)}
+.wins li::before{left:12px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:8px;background:var(--mint)}
+.wins li::after{left:20px;top:50%;margin-top:-4px;width:8px;height:4px;border-color:#0a6b3a;border-width:2.5px}
 /* transición de tema */
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-new(root){z-index:2}
@@ -292,7 +327,21 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
     </div>
     <div class="list" id="list"></div>
   </div>
-  <p class="extra rv">También: <b>Premium Logistics Cargo</b>, sistema de gestión para una empresa de paquetería (proyecto universitario).</p>
+  <article class="plc rv">
+    <div class="plctxt"><span class="pbadge">Proyecto universitario</span><h3>Premium Logistics Cargo</h3><p>Sistema de gestión para una empresa de paquetería: envíos, clientes y seguimiento de paquetes.</p></div>
+    <div class="route" aria-hidden="true">
+      <svg viewBox="0 0 520 170" preserveAspectRatio="xMidYMid meet">
+        <path id="rpath" d="M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 10" opacity=".35"/>
+        <path d="M30 120 C120 20, 200 160, 280 80 S 430 30, 490 70" fill="none" stroke="#2ee57d" stroke-width="4" stroke-linecap="round" class="rdone" pathLength="1"/>
+        <g class="stop s1"><circle cx="30" cy="120" r="9"/><text x="30" y="150">Bodega</text></g>
+        <g class="stop s2"><circle cx="196" cy="104" r="9"/><text x="196" y="138">En ruta</text></g>
+        <g class="stop s3"><circle cx="350" cy="52" r="9"/><text x="350" y="30">Aduana</text></g>
+        <g class="stop s4"><circle cx="490" cy="70" r="9"/><text x="490" y="104">Entregado</text></g>
+        <g class="truck"><rect x="-17" y="-11" width="22" height="18" rx="3"/><rect x="5" y="-5" width="12" height="12" rx="2"/><circle cx="-10" cy="9" r="3.5"/><circle cx="11" cy="9" r="3.5"/></g>
+      </svg>
+      <span class="pk">Paquete #PL-2045</span>
+    </div>
+  </article>
 </div></section>
 
 <section class="band about" id="sobre-mi"><div class="wrap">
