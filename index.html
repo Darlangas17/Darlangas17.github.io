@@ -172,14 +172,14 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .stat b{font:700 clamp(44px,5vw,64px)/1 "Space Grotesk";display:block}
 .stat p{margin:8px 0 0;color:var(--soft);font-size:15px}
 .tilt{transition:transform .25s ease,box-shadow .25s ease;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
-.par{transform:translateY(var(--py,0px));will-change:transform}
+
 .tilt:hover{box-shadow:0 40px 70px -30px #0009}
 .rv{transition-delay:var(--d,0s)}
 .otro{transition:transform .25s,border-color .25s,padding-left .3s}
 .otro:hover{padding-left:30px}
 .tl{position:relative;padding-left:22px}
 .tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--ok);transform-origin:top;transform:scaleY(0);transition:transform 1.2s ease .2s}
-.tl.in::before{transform:scaleY(1)}
+
 .tl .jb{position:relative}
 .tl .jb::before{content:"";position:absolute;left:-22px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--ok)}
 .chips span,.course,.duties span{transition:transform .2s,background .2s}
@@ -189,6 +189,36 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .job.in .wins li,.rv.in .wins li{opacity:1;transform:none}
 @media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.ch,.htxt .who,.htxt .big,.htxt .btns,.htxt small,#stage{opacity:1;transform:none;animation:none}.board,.track,.herobg::before,.shine::after{animation:none}.tl::before{transform:none}.wins li{opacity:1;transform:none}.prog{display:none}}
+
+/* motion v3 */
+body,nav,.course,.jb,.job,.otro,.chips span,.about{transition:background-color .4s ease,color .4s ease,border-color .4s ease}
+.navr{display:flex;align-items:center;gap:8px}
+.theme{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;display:grid;place-items:center;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.theme:hover{transform:rotate(25deg) scale(1.08)}
+.theme .sun{width:18px;height:18px;border-radius:50%;background:var(--ink);box-shadow:inset -6px -4px 0 0 var(--card);transition:box-shadow .5s,background .4s}
+:root[data-theme=dark] .theme .sun{box-shadow:inset 0 0 0 0 var(--card),0 0 0 3px color-mix(in srgb,var(--mint) 40%,transparent);background:var(--mint)}
+.rv{transform:translate(var(--dx,0px),28px)}
+.rv.in{transform:none}
+.uh{position:relative;display:inline-block}
+.uh::after{content:"";position:absolute;left:0;bottom:-8px;height:6px;width:100%;border-radius:6px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.9,.2,1) .3s}
+.in .uh::after,.uh.in::after{transform:scaleX(1)}
+.frame,.phones,.phone{--p:0;transform:perspective(1200px) rotateY(calc(var(--p)*-8deg + var(--ry,0deg))) rotateX(calc(var(--p)*3deg + var(--rx,0deg)));transition:box-shadow .3s,filter .3s;will-change:transform}
+.media:hover .frame,.feat .frame:hover{box-shadow:0 34px 70px -24px color-mix(in srgb,var(--ok) 55%,transparent);filter:saturate(1.1)}
+.frame{position:relative}
+.frame img{transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .25s}
+.frame:hover img{transform:scale(1.035)}
+.frame::after{content:"Ver más grande";position:absolute;right:12px;bottom:12px;font:600 13px Inter;background:#0a0a0acc;color:#fff;padding:6px 12px;border-radius:999px;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none}
+.frame:hover::after{opacity:1;transform:none}
+.tl::before{transform:scaleY(var(--tl,0));transition:none}
+.tl .jb::before{transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1) .15s}
+.tl .jb.in::before{transform:scale(1)}
+.tl .jb{opacity:0;transform:translateX(-30px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0s)}
+.tl .jb.in{opacity:1;transform:none}
+.badge{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.p:hover .badge,.feat:hover .badge{transform:translateY(-2px) scale(1.04)}
+.tk{transition:transform .2s}
+.tk:hover{transform:translateY(-2px) rotate(-1deg)}
+@media(prefers-reduced-motion:reduce){.frame,.phones,.phone{transform:none}.tl .jb{opacity:1;transform:none}.tl .jb::before{transform:none}.uh::after{transform:none}}
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:50;background:#000c;display:none;align-items:center;justify-content:center;padding:4vw}
 .lb.open{display:flex;animation:fade .25s}
@@ -203,7 +233,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 <body>
 <div class="prog" id="prog"></div>
 <nav><div class="wrap"><b>Darlan Perdomo</b>
-<div class="links" id="links"><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a></div></div></nav>
+<div class="navr"><div class="links" id="links"><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a></div><button class="theme" id="theme" aria-label="Cambiar entre modo claro y oscuro"><span class="sun"></span></button></div></div></nav>
 
 <div class="herobg" id="herobg"><header class="wrap hero">
   <div class="htxt">
@@ -227,14 +257,14 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 </header></div>
 <div class="marq" aria-hidden="true"><div class="track" id="track"></div></div>
 <section class="wrap stats" id="stats">
-  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software entregados</p></div>
+  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software desarrollados</p></div>
   <div class="stat rv"><b data-n="2">0</b><p>sistemas en producción para una empresa de EE. UU.</p></div>
   <div class="stat rv"><b data-n="3">0</b><p>sucursales de Smart Fit a mi cargo</p></div>
   <div class="stat rv"><b data-n="10">0</b><p>cursos completados</p></div>
 </section>
 
 <section class="band" id="proyectos" style="padding-top:clamp(24px,4vw,48px)"><div class="wrap">
-  <div class="rv"><p class="label">Proyectos</p><h2>Lo que he construido</h2><p class="lead">Sistemas en producción para clientes, apps móviles y mi proyecto más completo: TicketFlow. Toca cualquier imagen para verla más grande.</p></div>
+  <div class="rv"><p class="label">Proyectos</p><h2 class="uh">Lo que he construido</h2><p class="lead">Sistemas en producción para clientes, apps móviles, proyectos universitarios y mi proyecto más completo: TicketFlow. Toca cualquier imagen para verla más grande.</p></div>
 
   <article class="feat rv">
     <div>
@@ -362,14 +392,14 @@ projEl.addEventListener('click',e=>{
   const z=e.target.closest('[data-zoom]');if(z){openLb(z.src,z.alt);return}
   const f=e.target.closest('[data-zoomframe]');if(f){const im=document.getElementById(f.dataset.zoomframe);openLb(im.src,im.alt)}
 });
-const otros=[["Premium Logistics Cargo","Cliente real","Sistema integral de gestión para una empresa de paquetería."],["Monitor de paciente UCI con IoT","Proyecto académico","Sensores de signos vitales simulados en Wokwi que envían datos a ThingSpeak, con análisis y alertas en Google Colab."]];
+const otros=[["Premium Logistics Cargo","Proyecto universitario","Sistema integral de gestión para una empresa de paquetería."]];
 document.getElementById('otros').innerHTML=otros.map(([a,b,c])=>`<div class="otro rv"><span class="badge">${b}</span><h3>${a}</h3><p>${c}</p></div>`).join('');
 
 /* sobre mí */
 document.getElementById('duties').innerHTML=["Servidores","Control de acceso","Redes Wi-Fi","Audio","Cámaras","Climatización"].map(x=>`<span>${x}</span>`).join('');
 const wins=[["Diagnóstico de cobertura Wi-Fi","en las tres sucursales, con propuesta de equipos y presupuesto, e instalación de repetidores en Galerías."],["Administración y soporte de AppScheduler,","el servicio de Windows en PowerShell y NSSM que controla la música ambiental: ajuste de horarios y corrección de fallas."],["Manual de diagnóstico y corrección de fallas","y checklist de validación de sistemas por sucursal."],["Propuesta de plan de contingencia","para mantener el control de acceso y la operación ante una caída del sistema (pendiente de aprobación)."]];
 document.getElementById('wins').innerHTML=wins.map(([a,b])=>`<li><strong>${a}</strong> ${b}</li>`).join('');
-const jobs=[["Desarrollador de software freelance","Desarrollo web y móvil","Por proyecto","Backoffice y sitio web para JTX Electrical, sistema de gestión para Premium Logistics Cargo y la app Pumarket."],["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, tarifas y plazos de entrega, y procesamiento de reembolsos."],["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."]];
+const jobs=[["Desarrollador de software freelance","Desarrollo web y móvil","Por proyecto","Backoffice y sitio web para JTX Electrical, y la app móvil Pumarket."],["Agente de Servicio al Cliente","IntouchCX","Nov. 2022 a feb. 2023","Seguimiento de paquetes, tarifas y plazos de entrega, y procesamiento de reembolsos."],["Práctica en Electrónica","Honduras Electrical Distribution System","2021","Reparación de electrodomésticos pequeños y mantenimiento preventivo y correctivo de equipos electrónicos."]];
 document.getElementById('jobs').innerHTML=jobs.map(([a,b,c,d])=>`<div class="jb"><div class="jbt"><div><h3>${a}</h3><small>${b}</small></div><span>${c}</span></div><p>${d}</p></div>`).join('');
 const courses=[["Desarrollo web","HTML, CSS, JavaScript y Node.js","Codédex"],["Jira","Jira Fundamentals","Atlassian University"],["Soporte con tickets","Jira Service Management Fundamentals","Atlassian University"],["Angular","Tutorial oficial “Learn Angular”","angular.dev"],["Firebase","Codelabs oficiales","Google Firebase"],["Flutter","Ruta oficial de aprendizaje","flutter.dev"],["Flutter","Curso de Flutter","Coddy"],["Tailwind CSS","Curso en español (David Ruiz)","freeCodeCamp"],["SQLite","SQLite Course","Flavio Copes"],["SAP","Learning journey introductorio","SAP Learning"]];
 document.getElementById('courses').innerHTML=courses.map(([a,b,c])=>`<div class="course"><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
@@ -393,13 +423,25 @@ document.querySelectorAll('.frame,.phones,.phone').forEach(f=>{f.classList.add('
   f.addEventListener('pointermove',e=>{const r=f.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.setProperty('--ry',(x*6)+'deg');f.style.setProperty('--rx',(-y*6)+'deg')});
   f.addEventListener('pointerleave',()=>{f.style.setProperty('--ry','0deg');f.style.setProperty('--rx','0deg')})});
 /* barra de progreso y parallax */
-const prog=document.getElementById('prog'),par=[...document.querySelectorAll('.p .media, .feat > div:first-child')];par.forEach(e=>e.classList.add('par'));let tick=false;
-function onScroll(){const h=document.documentElement;prog.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight)||0})`;
-  if(!reduce)par.forEach((f,i)=>{const r=f.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));f.style.setProperty('--py',(c*-14*(i%2?1:-1)).toFixed(1)+'px')});tick=false}
+const prog=document.getElementById('prog'),par=[...document.querySelectorAll('.frame,.phones')];let tick=false;
+function onScroll(){const h=document.documentElement;prog.style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight)||0})`;const tlE=document.getElementById('jobs');if(tlE){const r=tlE.getBoundingClientRect();tlE.style.setProperty('--tl',Math.max(0,Math.min(1,(innerHeight*.75-r.top)/r.height)).toFixed(3))}
+  if(!reduce)par.forEach((f,i)=>{const r=f.getBoundingClientRect(),c=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/(innerHeight/2)));f.style.setProperty('--p',(c*(i%2?-1:1)).toFixed(3))});tick=false}
 addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 /* retrasos escalonados */
 document.querySelectorAll('.otros .rv,.stats .rv').forEach((e,i)=>e.style.setProperty('--d',(i%4)*.1+'s'));
 document.querySelectorAll('#wins li').forEach((e,i)=>e.style.setProperty('--i',i));
+
+/* mitades de cada proyecto entran desde los lados */
+document.querySelectorAll('.p').forEach((a,i)=>{a.classList.remove('rv');const m=a.children[0],t=a.children[1];const even=i%2===1;
+  m.classList.add('rv');m.style.setProperty('--dx',(even?60:-60)+'px');t.classList.add('rv');t.style.setProperty('--dx',(even?-40:40)+'px');t.style.setProperty('--d','.12s')});
+document.querySelectorAll('#jobs .jb').forEach((e,i)=>{e.classList.add('rv');e.style.setProperty('--d',(i*.12)+'s')});
+document.querySelectorAll('.otros .otro').forEach((e,i)=>e.style.setProperty('--d',(i*.08)+'s'));
+document.querySelectorAll('.uh').forEach(e=>e.classList.add('rv'));
+/* modo claro / oscuro */
+const root=document.documentElement,tb=document.getElementById('theme');
+let saved=null;try{saved=localStorage.getItem('dp-theme')}catch(e){}
+if(saved)root.dataset.theme=saved;
+tb.addEventListener('click',()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const nx=cur==='dark'?'light':'dark';root.dataset.theme=nx;try{localStorage.setItem('dp-theme',nx)}catch(e){}});
 /* animaciones al hacer scroll */
 const els=document.querySelectorAll('.rv,.tl');
 if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));document.querySelectorAll('b[data-n]').forEach(b=>b.textContent=b.dataset.n)}
