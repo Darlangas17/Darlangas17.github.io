@@ -264,6 +264,18 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 .wins li:hover{background:color-mix(in srgb,var(--mint) 45%,var(--card));transform:translateX(3px)}
 .wins li::before{left:12px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:8px;background:var(--mint)}
 .wins li::after{left:20px;top:50%;margin-top:-4px;width:8px;height:4px;border-color:#0a6b3a;border-width:2.5px}
+
+/* foto */
+.me{position:relative;width:200px;height:200px;margin:0 0 26px}
+.me img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;border:5px solid var(--bg);box-shadow:0 24px 50px -20px #000a;animation:floaty 6s ease-in-out infinite;transition:transform .4s cubic-bezier(.2,.9,.2,1)}
+.me:hover img{transform:scale(1.04) rotate(-2deg)}
+.ring{position:absolute;inset:-9px;border-radius:50%;background:conic-gradient(from var(--ang),#2ee57d,#b8f5d0,transparent 40%,#11a85a,#2ee57d);animation:spin 5s linear infinite;filter:drop-shadow(0 0 14px #2ee57d66)}
+.ring::after{content:"";position:absolute;inset:-26px;border-radius:50%;background:radial-gradient(circle,#2ee57d33,transparent 65%);z-index:-1;animation:pulse 4s ease-in-out infinite}
+.mebadge{position:absolute;z-index:2;right:-18px;bottom:14px;background:var(--night);color:var(--mint);font:600 13px Inter;padding:6px 12px;border-radius:999px;display:flex;align-items:center;gap:7px;box-shadow:0 10px 24px -10px #000;animation:bob 4s ease-in-out infinite}
+.mebadge i{width:8px;height:8px;border-radius:50%;background:var(--glow);animation:ping 2s ease-out infinite}
+.aboutp{margin:0 0 12px;color:var(--soft);max-width:46ch}
+.intro{margin-bottom:10px}
+@media(max-width:600px){.me{width:170px;height:170px}}
 /* transición de tema */
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-new(root){z-index:2}
@@ -347,9 +359,11 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 <section class="band about" id="sobre-mi"><div class="wrap">
   <div class="agrid">
     <div class="rv">
-      <div class="avatar" aria-hidden="true">DP</div>
+      <div class="me"><div class="ring"></div><img src="darlan.jpg" alt="Foto de Darlan Perdomo" width="220" height="220"><span class="mebadge"><i></i>Disponible</span></div>
       <p class="label">Sobre mí</p>
-      <p class="intro">Desarrollador web y mobile. También mantengo funcionando la tecnología de Smart Fit en San Pedro Sula.</p>
+      <p class="intro">Hola, soy Darlan.</p>
+      <p class="aboutp">Desarrollador web y mobile de San Pedro Sula. Construyo sistemas completos, desde el diseño hasta ponerlos en producción, con Angular, Flutter, .NET y Firebase.</p>
+      <p class="aboutp">Hoy trabajo como Técnico de Sistemas en Smart Fit, a cargo de redes, servidores y equipos de tres sucursales. Busco seguir creciendo como desarrollador en un equipo donde aprender y aportar.</p>
       <div class="facts"><span><b>Estudio:</b> Ingeniería en Sistemas, UNAH</span><span><b>Idiomas:</b> español e inglés intermedio</span></div>
     </div>
     <div class="rv">
