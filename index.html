@@ -155,7 +155,7 @@ footer{color:var(--soft);font-size:13px;padding:28px 0 40px;text-align:center}
 @keyframes rise{to{opacity:1;transform:none}}
 .htxt .who,.htxt .big,.htxt .btns,.htxt small{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.9,.2,1) forwards}
 .htxt .who{animation-delay:.05s}.htxt .big{animation-delay:.9s}.htxt .btns{animation-delay:1.05s}.htxt small{animation-delay:1.2s}
-#stage{opacity:0;transform:translateY(30px) scale(.96);animation:rise 1s cubic-bezier(.2,.9,.2,1) .4s forwards}
+#stage{opacity:0;transform:translateY(30px) scale(.96);animation:rise 1s cubic-bezier(.2,.9,.2,1) .4s forwards,spin 6s linear infinite}
 .board{animation:floaty 6s ease-in-out 1.6s infinite}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .shine{position:relative;overflow:hidden}
@@ -219,6 +219,52 @@ body,nav,.course,.jb,.job,.otro,.chips span,.about{transition:background-color .
 .tk{transition:transform .2s}
 .tk:hover{transform:translateY(-2px) rotate(-1deg)}
 @media(prefers-reduced-motion:reduce){.frame,.phones,.phone{transform:none}.tl .jb{opacity:1;transform:none}.tl .jb::before{transform:none}.uh::after{transform:none}}
+
+/* polish v4: portada oscura animada */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.herobg{background:#06110b;color:#f2f2f2;isolation:isolate}
+.herobg .hero h1{color:#fff}
+.herobg .who{color:#b8f5d0;display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:#2ee57d;box-shadow:0 0 0 0 #2ee57d88;animation:ping 2s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 #2ee57d88}100%{box-shadow:0 0 0 14px #2ee57d00}}
+.herobg .big{color:#c9d4cd}.herobg small{color:#8fa197}
+.role{font:600 clamp(20px,2vw,26px) "Space Grotesk";margin:18px 0 0;color:#fff;opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.9,.2,1) .75s forwards}
+#role{color:var(--mint);background:linear-gradient(90deg,#b8f5d0,#2ee57d,#b8f5d0);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 4s linear infinite}
+@keyframes flow{to{background-position:-200% 0}}
+.caret{display:inline-block;width:3px;height:1.05em;background:var(--mint);margin-left:4px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.herobg .btn.fill{background:var(--mint);color:#06110b;border-color:var(--mint)}
+.herobg .btn.ghost{border-color:#ffffff55;color:#fff}
+.herobg .btn.ghost:hover{border-color:#fff;background:#ffffff12}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none;z-index:-1}
+.b1{width:520px;height:520px;background:#11a85a;right:-120px;top:-160px;animation:orb1 16s ease-in-out infinite alternate}
+.b2{width:420px;height:420px;background:#0f5c8c;left:-140px;bottom:-200px;animation:orb2 19s ease-in-out infinite alternate}
+.b3{width:300px;height:300px;background:#b8f5d0;left:40%;top:30%;opacity:.18;animation:orb3 13s ease-in-out infinite alternate}
+@keyframes orb1{to{transform:translate(-180px,140px) scale(1.2)}}
+@keyframes orb2{to{transform:translate(220px,-120px) scale(1.15)}}
+@keyframes orb3{to{transform:translate(-160px,-90px) scale(.8)}}
+.grid{position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff0d 1px,transparent 1px),linear-gradient(90deg,#ffffff0d 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 60% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 60% 40%,#000 30%,transparent 75%);animation:gridmove 20s linear infinite}
+@keyframes gridmove{to{background-position:48px 48px,48px 48px}}
+.herobg::before{display:none}
+.herobg::after{background:radial-gradient(420px circle at var(--mx,70%) var(--my,30%),#b8f5d022,transparent 70%)}
+.field{border:2px solid transparent;background:linear-gradient(var(--mint),var(--mint)) padding-box,conic-gradient(from var(--ang),#ffffff,#2ee57d,#06110b,#b8f5d0,#ffffff) border-box;animation:rise 1s cubic-bezier(.2,.9,.2,1) .4s forwards,spin 6s linear infinite;box-shadow:0 0 90px -10px #2ee57d55}
+@keyframes spin{to{--ang:360deg}}
+.marq{border-top:1px solid #ffffff14}
+/* cursor glow */
+.cursor{position:fixed;left:0;top:0;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,color-mix(in srgb,var(--mint) 22%,transparent),transparent 65%);opacity:0;transition:opacity .4s;mix-blend-mode:normal}
+@media(hover:hover) and (pointer:fine){.cursor.on{opacity:1}}
+/* brillo al pasar el mouse en tarjetas */
+.otro,.course,.jb,.stat,.job{position:relative;overflow:hidden}
+.otro::after,.course::after,.jb::after,.stat::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,color-mix(in srgb,var(--mint) 45%,transparent) 50%,transparent 65%);transform:translateX(-110%);transition:transform .8s ease;pointer-events:none}
+.otro:hover::after,.course:hover::after,.jb:hover::after,.stat:hover::after{transform:translateX(110%)}
+.stat{transition:transform .3s;display:flex;flex-direction:column}.stat i{margin-top:auto!important;position:relative;top:12px}.stat:hover{transform:translateY(-4px)}
+.stat i{display:block;height:4px;border-radius:4px;background:var(--line);margin-top:12px;overflow:hidden}
+.stat i::before{content:"";display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,var(--ok),var(--mint));transition:width 1.4s cubic-bezier(.2,.9,.2,1) .2s}
+.stat.in i::before{width:100%}
+.mag{transition:transform .25s cubic-bezier(.2,.9,.2,1)}
+.p .frame img{transition:opacity .35s,transform .6s cubic-bezier(.2,.9,.2,1)}
+.uh::after{background:linear-gradient(90deg,var(--ok),var(--mint))}
+@media(prefers-reduced-motion:reduce){.blob,.grid,.field,.dot,.caret,#role{animation:none}.role{opacity:1;transform:none}.cursor{display:none}}
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:50;background:#000c;display:none;align-items:center;justify-content:center;padding:4vw}
 .lb.open{display:flex;animation:fade .25s}
@@ -231,16 +277,18 @@ body,nav,.course,.jb,.job,.otro,.chips span,.about{transition:background-color .
 </style>
 </head>
 <body>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 <div class="prog" id="prog"></div>
 <nav><div class="wrap"><b>Darlan Perdomo</b>
 <div class="navr"><div class="links" id="links"><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a></div><button class="theme" id="theme" aria-label="Cambiar entre modo claro y oscuro"><span class="sun"></span></button></div></div></nav>
 
-<div class="herobg" id="herobg"><header class="wrap hero">
+<div class="herobg" id="herobg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><header class="wrap hero">
   <div class="htxt">
-    <p class="who">Darlan Perdomo · San Pedro Sula, Honduras</p>
+    <p class="who"><span class="dot"></span>Disponible · San Pedro Sula, Honduras</p>
     <h1 id="h1">Construyo sistemas que resuelven problemas reales</h1>
+    <p class="role">Soy <span id="role">desarrollador web</span><span class="caret"></span></p>
     <p class="big">Desarrollo aplicaciones web y móviles con Angular, .NET, Flutter y Firebase, y doy soporte a la tecnología de empresas con varias sucursales.</p>
-    <div class="btns"><a class="btn fill shine" href="#proyectos">Ver mis proyectos</a><a class="btn" href="https://wa.me/50498812238">Escribirme por WhatsApp</a></div>
+    <div class="btns"><a class="btn fill shine mag" href="#proyectos">Ver mis proyectos</a><a class="btn ghost mag" href="https://wa.me/50498812238">Escribirme por WhatsApp</a></div>
     <small>Estudiante de Ingeniería en Sistemas en la UNAH y Técnico de Sistemas en Smart Fit Honduras.</small>
   </div>
   <div class="field" id="stage" aria-label="Animación de un tablero de tickets de soporte">
@@ -257,10 +305,10 @@ body,nav,.course,.jb,.job,.otro,.chips span,.about{transition:background-color .
 </header></div>
 <div class="marq" aria-hidden="true"><div class="track" id="track"></div></div>
 <section class="wrap stats" id="stats">
-  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software desarrollados</p></div>
-  <div class="stat rv"><b data-n="2">0</b><p>sistemas en producción para una empresa de EE. UU.</p></div>
-  <div class="stat rv"><b data-n="3">0</b><p>sucursales de Smart Fit a mi cargo</p></div>
-  <div class="stat rv"><b data-n="10">0</b><p>cursos completados</p></div>
+  <div class="stat rv"><b data-n="5">0</b><p>proyectos de software desarrollados</p><i></i></div>
+  <div class="stat rv"><b data-n="2">0</b><p>sistemas en producción para una empresa de EE. UU.</p><i></i></div>
+  <div class="stat rv"><b data-n="3">0</b><p>sucursales de Smart Fit a mi cargo</p><i></i></div>
+  <div class="stat rv"><b data-n="10">0</b><p>cursos completados</p><i></i></div>
 </section>
 
 <section class="band" id="proyectos" style="padding-top:clamp(24px,4vw,48px)"><div class="wrap">
@@ -442,6 +490,18 @@ const root=document.documentElement,tb=document.getElementById('theme');
 let saved=null;try{saved=localStorage.getItem('dp-theme')}catch(e){}
 if(saved)root.dataset.theme=saved;
 tb.addEventListener('click',()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const nx=cur==='dark'?'light':'dark';root.dataset.theme=nx;try{localStorage.setItem('dp-theme',nx)}catch(e){}});
+
+/* rol que se escribe solo */
+const roles=["desarrollador web","desarrollador de apps móviles","técnico de soporte TI","creador de TicketFlow"];const roleEl=document.getElementById('role');
+if(!reduce){let ri=0,ci=roles[0].length,del=true;setTimeout(function loop(){const w=roles[ri];if(del){ci--;if(ci<=0){del=false;ri=(ri+1)%roles.length}}else{ci++;if(ci>=roles[ri].length){del=true;roleEl.textContent=roles[ri];return setTimeout(loop,1800)}}roleEl.textContent=roles[ri].slice(0,Math.max(ci,0));setTimeout(loop,del?40:75)},2600)}
+/* brillo que sigue al cursor */
+const cur=document.getElementById('cursor');
+if(!reduce){addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;cur.classList.add('on');cur.style.transform=`translate(${e.clientX}px,${e.clientY}px)`},{passive:true});document.addEventListener('pointerleave',()=>cur.classList.remove('on'))}
+/* botones magnéticos */
+document.querySelectorAll('.btn').forEach(b=>{if(reduce)return;b.classList.add('mag');b.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')});
+/* galerías que avanzan solas en todos los proyectos */
+document.querySelectorAll('#proj .thumbs').forEach(t=>{if(reduce)return;let k=0,paused=false;const box=t.closest('.media');box.addEventListener('pointerenter',()=>paused=true);box.addEventListener('pointerleave',()=>paused=false);t.addEventListener('click',()=>{paused=true;setTimeout(()=>paused=false,8000)});
+  setInterval(()=>{if(paused)return;const bs=[...t.children];k=(bs.findIndex(x=>x.classList.contains('on'))+1)%bs.length;const b=bs[k],im=document.getElementById(b.dataset.m);im.style.opacity=.2;setTimeout(()=>{im.src=b.dataset.s;im.style.opacity=1},300);bs.forEach(x=>x.classList.toggle('on',x===b))},4200+Math.random()*900)});
 /* animaciones al hacer scroll */
 const els=document.querySelectorAll('.rv,.tl');
 if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));document.querySelectorAll('b[data-n]').forEach(b=>b.textContent=b.dataset.n)}
